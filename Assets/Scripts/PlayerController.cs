@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 
     float xInput;
     float zInput;
+    bool isJumping;
+    Vector3 playerScale;
 
     [Header("Movement Properties")]
     public float moveSpeed = 5.0f;
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         playerAnimator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();
+        playerScale = transform.localScale;
     }
     // Start is called before the first frame update
     void Start()
@@ -36,16 +39,36 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 movement = new Vector3(xInput, 0.0f, zInput);
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundRadius, groundMask);
+
+        if (isGrounded)
+        {
+            isJumping = false;
+        }
 
         xInput = Input.GetAxis("Horizontal");
         zInput = Input.GetAxis("Vertical");
 
-        //jump
-        if (Input.GetButton("Jump") && isGrounded)
+        playerAnimator.SetBool("IsJumping", isJumping);
+
+
+        transform.rotation = Quaternion.LookRotation(movement);
+
+        float horizontalInput = Input.GetAxis("Vertical");
+        float verticalInput = Input.GetAxis("Horizontal");
+
+
+        //face the way player moves
+        Vector3 moveDirection = new Vector3(verticalInput, 0, horizontalInput);
+
+        if (moveDirection.sqrMagnitude > 0.001f)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
+            var desiredRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * 10);
         }
+
     }
 
     private void FixedUpdate()
@@ -53,11 +76,18 @@ public class PlayerController : MonoBehaviour
         float xVelocity = xInput * moveSpeed;
         float zVelocity = zInput * moveSpeed;
 
+        //walk
         rigidBody.velocity = new Vector3(xVelocity, rigidBody.velocity.y, zVelocity);
 
-        ////walk
-        //Vector3 move = transform.right * xInput + transform.forward * zInput;
-        //controller.Move(move * moveSpeed * Time.deltaTime);
+        //jump
+        if (Input.GetButton("Jump") && isGrounded)
+        {
+            rigidBody.velocity = new Vector3(xVelocity, Mathf.Sqrt(jumpHeight * -2.0f * gravity), zVelocity);
+            isJumping = true;
+        }
+
+        playerAnimator.SetFloat("XVelocity", xVelocity);
+        playerAnimator.SetFloat("ZVelocity", zVelocity);
     }
 
     private void OnDrawGizmos()
