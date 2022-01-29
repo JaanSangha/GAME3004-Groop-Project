@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     private Animator playerAnimator;
@@ -15,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public float force = 1;
 
     public int Health = 100;
-
+    public int Score = 0;
     [Header("Movement Properties")]
     public float moveSpeed = 5.0f;
     public float gravity = -30.0f;
@@ -28,8 +30,14 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public bool isGrounded;
 
+    [Header("Text UI")]
+    public Canvas GameOverCanvas;
+    public TextMeshProUGUI GameOverText;
+    public TextMeshProUGUI ScoreText;
+
     private void Awake()
     {
+        Time.timeScale = 1;
         playerAnimator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();
         playerScale = transform.localScale;
@@ -114,6 +122,40 @@ public class PlayerController : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(pushDirection * force * 100);
 
             Health -= 10;
+
+            if(Health == 0)
+            {
+                GameOver(true);
+            }
+        }
+        if (other.gameObject.tag == "goal")
+        {
+            Debug.Log("Win");
+
+            GameWin(true);    
+  
+        }
+    }
+    //gameover 
+    public void GameOver(bool isDead)
+    {
+        if (isDead)
+        {
+            GameOverCanvas.gameObject.SetActive(true);
+            GameOverText.text = "Game Over";
+            ScoreText.text = Score.ToString();
+            Time.timeScale = 0;
+        }
+    }
+    //win
+    public void GameWin(bool isWin)
+    {
+        if(isWin)
+        {
+            GameOverCanvas.gameObject.SetActive(true);
+            GameOverText.text = "You Win";
+            ScoreText.text = Score.ToString();
+            Time.timeScale = 0;
         }
     }
 }
