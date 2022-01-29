@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     bool isJumping;
     Vector3 playerScale;
 
+    public float force = 1;
+
+    public int Health = 100;
+
     [Header("Movement Properties")]
     public float moveSpeed = 5.0f;
     public float gravity = -30.0f;
@@ -94,5 +98,22 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "hazard")
+        {
+            Debug.Log("Ouch");//for checking collision with hazard
+
+            //gives some knockback to player when colliding with hazard
+            Vector3 pushDirection = other.transform.position - transform.position;
+
+            pushDirection = -pushDirection.normalized;
+
+            GetComponent<Rigidbody>().AddForce(pushDirection * force * 100);
+
+            Health -= 10;
+        }
     }
 }

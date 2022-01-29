@@ -189,6 +189,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pf_Trap_Needle
       objectReference: {fileID: 0}
+    - target: {fileID: 115016, guid: afd19ab1d4bb70b499bb2f62171a522d, type: 3}
+      propertyPath: m_TagString
+      value: hazard
+      objectReference: {fileID: 0}
+    - target: {fileID: 115018, guid: afd19ab1d4bb70b499bb2f62171a522d, type: 3}
+      propertyPath: m_TagString
+      value: hazard
+      objectReference: {fileID: 0}
     - target: {fileID: 415016, guid: afd19ab1d4bb70b499bb2f62171a522d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5838,6 +5846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff4af8c7c11944f419fcbac9ed76dc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  force: 3
   moveSpeed: 5
   gravity: -30
   jumpHeight: 1
