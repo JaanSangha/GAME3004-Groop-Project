@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class MovingPlatformController : MonoBehaviour
+public class MovingPlatform : MonoBehaviour
 {
     public Transform PointA;
     public Transform PointB;
@@ -31,7 +31,7 @@ public class MovingPlatformController : MonoBehaviour
     {
         elapsedTime += Time.deltaTime;
         float percentComplete = elapsedTime / desiredTime;
-        transform.position = Vector3.LerpUnclamped(PointA.position, PointB.position, 
+        transform.position = Vector3.Lerp(PointA.position, PointB.position, 
                 speedCurve.Evaluate(Mathf.PingPong(percentComplete, 1)));
         
     }
