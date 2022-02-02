@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 8990594488806553015}
   m_Layer: 0
   m_Name: MovingBridge
-  m_TagString: Untagged
+  m_TagString: Moving Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

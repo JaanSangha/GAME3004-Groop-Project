@@ -5,18 +5,54 @@ using UnityEngine;
 public class ShrinkingPlatform : MonoBehaviour
 {
     private Vector3 originalScale;
-    public bool isActive;
+    private Vector3 finalScale;
+    public bool isActive = false;
+    public float desiredTime = 2f;
+    public float percentOfOriginalSize = 1f;
+    public AnimationCurve speedCurve;
+    private float elapsedTime;
 
     void Start()
     {
         originalScale = transform.localScale;
+        finalScale = Vector3.right + Vector3.up + (Vector3.forward * percentOfOriginalSize / 100f);
     }
 
     void Update()
     {
-        if(transform.localScale.z > 0.01f)
+        // if(transform.localScale.z > percentOfOriginalSize / 100f)
+        // {
+        //     transform.localScale -= Vector3.forward * Time.deltaTime / desiredTime;
+        // }
+
+        Shrink();
+    }
+
+    void Shrink()
+    {
+        
+        elapsedTime += Time.deltaTime;
+        float percentComplete = elapsedTime / desiredTime;
+        transform.localScale = Vector3.Lerp(originalScale, finalScale, 
+                speedCurve.Evaluate(Mathf.PingPong(percentComplete, 1)));
+    }
+
+    private void OnCollisionEnter(Collision other) 
+    {
+        if(other.gameObject.CompareTag("Player"))
         {
-            transform.localScale -= new Vector3(0, 0, 0.1f) * Time.deltaTime;
+            Debug.Log("Player collision");
+            isActive = true;
+            other.transform.parent = this.transform;
+        }
+    }
+
+    private void OnCollisionExit(Collision other) 
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            isActive = false;
+            other.transform.SetParent(null);
         }
     }
 }

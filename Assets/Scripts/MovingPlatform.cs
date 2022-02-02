@@ -8,7 +8,7 @@ public class MovingPlatform : MonoBehaviour
     public Transform PointA;
     public Transform PointB;
     
-    public bool isActive;
+    public bool isActive = false;
     
     public float desiredTime = 3f;
     [SerializeField]
@@ -34,5 +34,24 @@ public class MovingPlatform : MonoBehaviour
         transform.position = Vector3.Lerp(PointA.position, PointB.position, 
                 speedCurve.Evaluate(Mathf.PingPong(percentComplete, 1)));
         
+    }
+
+    private void OnCollisionEnter(Collision other) 
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Player collision");
+            isActive = true;
+            other.transform.parent = this.transform;
+        }
+    }
+
+    private void OnCollisionExit(Collision other) 
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            isActive = false;
+            other.transform.SetParent(null);
+        }
     }
 }
