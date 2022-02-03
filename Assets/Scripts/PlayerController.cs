@@ -79,6 +79,8 @@ public class PlayerController : MonoBehaviour
         {
             var desiredRotation = Quaternion.LookRotation(moveDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * 10);
+
+            SoundManager.instance.PlaySound(SoundsFX.WALK, this.gameObject);
         }
 
     }

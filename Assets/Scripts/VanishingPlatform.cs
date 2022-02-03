@@ -13,6 +13,7 @@ public class VanishingPlatform : MonoBehaviour
     private float elapsedTime;
     private MeshRenderer meshRender;
     private Material floorMat;
+    private Collider platformCollider;
 
     void Start()
     {
@@ -34,6 +35,8 @@ public class VanishingPlatform : MonoBehaviour
 
         finalAlpha = Mathf.Clamp01(finalAlpha);
         //floorMat.color = new Color(originalColor.r, originalColor.g, originalColor.b, finalAlpha);
+
+        platformCollider = transform.GetComponentInChildren<Collider>();
     }
 
     // Update is called once per frame
@@ -48,5 +51,10 @@ public class VanishingPlatform : MonoBehaviour
         elapsedTime += Time.deltaTime;
         float percentComplete = elapsedTime / desiredTime;
         floorMat.color = Color.Lerp(originalColor, finalColor, speedCurve.Evaluate(percentComplete));
+        
+        if(percentComplete >= 0.5f)
+        {
+            platformCollider.enabled = false;
+        }
     }
 }
