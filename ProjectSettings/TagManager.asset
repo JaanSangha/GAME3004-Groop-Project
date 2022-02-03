@@ -6,6 +6,8 @@ TagManager:
   tags:
   - hazard
   - goal
+  - Moving Platform
+  - Shrinking Platform
   layers:
   - Default
   - TransparentFX

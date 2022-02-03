@@ -37,6 +37,7 @@ public class ShrinkingPlatform : MonoBehaviour
                 speedCurve.Evaluate(Mathf.PingPong(percentComplete, 1)));
     }
 
+    // NOTE: WRONG, Collision happens on the subobject "Bridge". Revision needed
     private void OnCollisionEnter(Collision other) 
     {
         if(other.gameObject.CompareTag("Player"))

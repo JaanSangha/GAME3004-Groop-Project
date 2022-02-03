@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9156748695546960054}
   - component: {fileID: 9156748695546960055}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ShrinkingBridge
   m_TagString: Shrinking Platform
   m_Icon: {fileID: 0}
@@ -82,6 +82,18 @@ PrefabInstance:
     - target: {fileID: 114594, guid: e895839d2d09f2549b9c3d67f7f376a9, type: 3}
       propertyPath: m_Name
       value: Bridge_Large
+      objectReference: {fileID: 0}
+    - target: {fileID: 114594, guid: e895839d2d09f2549b9c3d67f7f376a9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114596, guid: e895839d2d09f2549b9c3d67f7f376a9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114598, guid: e895839d2d09f2549b9c3d67f7f376a9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 414594, guid: e895839d2d09f2549b9c3d67f7f376a9, type: 3}
       propertyPath: m_RootOrder
