@@ -28,8 +28,6 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
-
-
         Button[] allChildren = GetComponentsInChildren<Button>();
         foreach(Button b in allChildren)
         {
@@ -59,21 +57,22 @@ public class PauseMenu : MonoBehaviour
 
     void onResumeButton()
     {
+        SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
         Destroy(parent);
     }
 
     void onSaveButton()
     {
-
+        SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
     }
 
     void onLoadButton()
     {
-
+        SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
     }
 
     void onQuitButton()
     {
-
+        SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
     }
 }

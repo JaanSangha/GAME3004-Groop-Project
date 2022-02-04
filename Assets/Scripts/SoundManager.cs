@@ -2,23 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SoundsFX
-{
-    WALK,
-    WALK_BRIDGE,
-    JUMP,
-    JUMP_LAND,
-    JUMP_LAND_BRIDGE,
-    PLAYER_DAMAGE
-}
+
 
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
 
+    AudioSource thisAudio;
+
+    [Header("Player SFX")]
     public AudioClip playerDamage;
     public AudioClip jumpUp, jumpLand, jumpLandBridge;
     public AudioClip walkingStep, walkingStepBridge;
+    public AudioClip Pickup;
+
+    [Header("UI SFX")]
+    public AudioClip UIButtonClick;
 
     void Awake() 
     {
@@ -31,7 +30,7 @@ public class SoundManager : MonoBehaviour
             instance = this;
         }
 
-        
+        thisAudio = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -49,35 +48,78 @@ public class SoundManager : MonoBehaviour
         
     }
 
-    public void PlaySound(SoundsFX sound, GameObject audioSourceObj)
+    // Add this function to UI button on clicks
+    public void PlayMenuSound(SFX.UI_SFX sound)
     {
-        AudioSource audioSource = audioSourceObj.GetComponent<AudioSource>();
-
-        if(audioSource == null) return;
+        if(thisAudio == null) return;
 
         switch(sound)
         {
-            case SoundsFX.WALK:
-                if(audioSource.isPlaying == true) break;
-                audioSource.PlayOneShot(walkingStep);
-                break;
-            case SoundsFX.WALK_BRIDGE:
-                audioSource.clip = walkingStepBridge;
-                if(audioSource.isPlaying == true) break;
-                audioSource.Play();
-                break;
-            case SoundsFX.JUMP:
-                audioSource.PlayOneShot(jumpUp);
-                break;
-            case SoundsFX.JUMP_LAND:
-                audioSource.PlayOneShot(jumpLand);
-                break;
-            case SoundsFX.JUMP_LAND_BRIDGE:
-                audioSource.PlayOneShot(jumpLandBridge);
-                break;
-            case SoundsFX.PLAYER_DAMAGE:
-                audioSource.PlayOneShot(playerDamage);
+            case SFX.UI_SFX.BUTTON_CLICK:
+                //if(thisAudio.isPlaying == true) break;
+                thisAudio.PlayOneShot(UIButtonClick);
                 break;
         }
+    }
+
+    public void PlaySound(SFX.PlayerSFX sound, GameObject audioSourceObj)
+    
+    {
+        AudioSource audioSource = audioSourceObj.GetComponent<AudioSource>();
+
+        if(audioSource == null)
+        {
+            Debug.Log(audioSourceObj.name + " has no audio source");
+            return;
+        }
+
+        switch(sound)
+        {
+            case SFX.PlayerSFX.WALK:
+                audioSource.clip = walkingStep;
+                if(audioSource.isPlaying && audioSource.clip == walkingStep) break;
+                audioSource.Play();
+                break;
+            case SFX.PlayerSFX.WALK_BRIDGE:
+                audioSource.clip = walkingStepBridge;
+                if(audioSource.isPlaying && audioSource.clip == walkingStepBridge) break;
+                audioSource.Play();
+                break;
+            case SFX.PlayerSFX.JUMP:
+                audioSource.clip = jumpUp;
+                if(audioSource.isPlaying && audioSource.clip == jumpUp) break;
+                audioSource.Play();
+                break;
+            case SFX.PlayerSFX.JUMP_LAND:
+                audioSource.clip = jumpLand;
+                if(audioSource.isPlaying && audioSource.clip == jumpLand) break;
+                audioSource.Play();
+                break;
+            case SFX.PlayerSFX.JUMP_LAND_BRIDGE:
+                audioSource.clip = jumpLandBridge;
+                if(audioSource.isPlaying && audioSource.clip == jumpLandBridge) break;
+                audioSource.Play();
+                break;
+            case SFX.PlayerSFX.PLAYER_DAMAGE:
+                audioSource.clip = playerDamage;
+                if(audioSource.isPlaying && audioSource.clip == playerDamage) break;
+                audioSource.Play();
+                break;
+
+        }
+    }
+
+    private void PlayInAudioSource(AudioSource specificSource, AudioClip thisClip)
+    {
+        if(thisClip == null)
+        {
+            Debug.Log("Sound Manager has no clip for this sound");
+        }
+
+        specificSource.clip = thisClip;
+
+        // skips playing if already playing
+        if(specificSource.isPlaying && specificSource.clip == thisClip) return;
+        specificSource.Play();
     }
 }

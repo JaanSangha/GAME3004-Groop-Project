@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
             var desiredRotation = Quaternion.LookRotation(moveDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * 10);
 
-            SoundManager.instance.PlaySound(SoundsFX.WALK, this.gameObject);
+            if(isGrounded) SoundManager.instance.PlaySound(SFX.PlayerSFX.WALK, this.gameObject);
         }
 
     }
@@ -98,6 +98,7 @@ public class PlayerController : MonoBehaviour
         {
             rigidBody.velocity = new Vector3(xVelocity, Mathf.Sqrt(jumpHeight * -2.0f * gravity), zVelocity);
             isJumping = true;
+            SoundManager.instance.PlaySound(SFX.PlayerSFX.JUMP, this.gameObject);
         }
 
         playerAnimator.SetFloat("XVelocity", xVelocity);
