@@ -17,11 +17,13 @@ public class PlayerController : MonoBehaviour
     public float force = 1;
 
     public int Health = 100;
+    public int Lives = 3;
     public int Score = 0;
+
     [Header("Movement Properties")]
     public float moveSpeed = 5.0f;
     public float gravity = -30.0f;
-    public float jumpHeight = 3.0f;
+    public float jumpHeight = 5.0f;
     public Vector3 velocity;
 
     [Header("Ground Detection Properties")]
@@ -31,9 +33,13 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
 
     [Header("Text UI")]
-    public Canvas GameOverCanvas;
+    public GameObject GameOverScreen;
     public TextMeshProUGUI GameOverText;
     public TextMeshProUGUI ScoreText;
+
+    public GameObject UIHeartOne;
+    public GameObject UIHeartTwo;
+    public GameObject UIHeartThree;
 
     private void Awake()
     {
@@ -126,10 +132,7 @@ public class PlayerController : MonoBehaviour
 
             Health -= 10;
 
-            if(Health == 0)
-            {
-                GameOver(true);
-            }
+            LoseLife();
         }
         if (other.gameObject.tag == "goal")
         {
@@ -144,7 +147,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isDead)
         {
-            GameOverCanvas.gameObject.SetActive(true);
+            GameOverScreen.SetActive(true);
             GameOverText.text = "Game Over";
             ScoreText.text = Score.ToString();
             Time.timeScale = 0;
@@ -155,10 +158,41 @@ public class PlayerController : MonoBehaviour
     {
         if(isWin)
         {
-            GameOverCanvas.gameObject.SetActive(true);
+            GameOverScreen.SetActive(true);
             GameOverText.text = "You Win";
             ScoreText.text = Score.ToString();
             Time.timeScale = 0;
+        }
+    }
+
+    void LoseLife()
+    {
+        Lives--;
+
+        if (Lives == 3)
+        {
+            UIHeartOne.SetActive(true);
+            UIHeartTwo.SetActive(true);
+            UIHeartThree.SetActive(true);
+        }
+        else if(Lives == 2)
+        {
+            UIHeartOne.SetActive(true);
+            UIHeartTwo.SetActive(true);
+            UIHeartThree.SetActive(false);
+        }
+        else if (Lives == 1)
+        {
+            UIHeartOne.SetActive(true);
+            UIHeartTwo.SetActive(false);
+            UIHeartThree.SetActive(false);
+        }
+        if (Lives < 1)
+        {
+            UIHeartOne.SetActive(false);
+            UIHeartTwo.SetActive(false);
+            UIHeartThree.SetActive(false);
+            GameOver(true);
         }
     }
 }
