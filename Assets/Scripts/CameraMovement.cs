@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public GameObject player;
+    public Transform player;
     public float xPos;
     public float zPos;
     public float yPos;
@@ -20,6 +20,6 @@ public class CameraMovement : MonoBehaviour
         xPos = player.transform.position.x;
         zPos = player.transform.position.z - 8;
         yPos = player.transform.position.y + 2;
-        transform.position = new Vector3(xPos, yPos, zPos);
+        transform.position = new Vector3(player.position.x, player.position.y + 2, player.position.z -8);
     }
 }
