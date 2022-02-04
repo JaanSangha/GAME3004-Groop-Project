@@ -7458,7 +7458,7 @@ MonoBehaviour:
   Score: 0
   moveSpeed: 5
   gravity: -30
-  jumpHeight: 1
+  jumpHeight: 0.5
   velocity: {x: 0, y: 0, z: 0}
   groundCheck: {fileID: 742215502}
   groundRadius: 0.4
