@@ -45,7 +45,10 @@ public class ButtonManager : MonoBehaviour
     {
         SceneManager.LoadScene("Options");
     }
-
+    public void GoToMenuButton()
+    {
+        SceneManager.LoadScene("Menu");
+    }
     public void PauseButton()
     {
         Instantiate(PauseUIPrefab, new Vector3(0, 0, 0), Quaternion.identity);
