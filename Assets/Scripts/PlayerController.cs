@@ -127,6 +127,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "hazard")
         {
+            SoundManager.instance.PlaySound(SFX.PlayerSFX.PLAYER_DAMAGE, this.gameObject);
+
             Debug.Log("Ouch");//for checking collision with hazard
 
             //gives some knockback to player when colliding with hazard
@@ -190,6 +192,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Water" || collision.gameObject.tag == "Enemy")
         {
+            SoundManager.instance.PlaySound(SFX.PlayerSFX.PLAYER_DAMAGE, this.gameObject);
+            
             LoseLife();
         }
     }

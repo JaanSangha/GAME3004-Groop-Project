@@ -57,6 +57,8 @@ public class ShrinkingPlatform : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
+            SoundManager.instance.PlaySound(SFX.PlayerSFX.JUMP_LAND_BRIDGE, other.gameObject);
+            
             Debug.Log("Player collision");
             isActive = true;
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 
@@ -8,7 +9,8 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
 
-    AudioSource thisAudio;
+    Button[] gameObjButtons;
+
     [SerializeField, Tooltip("Camera speakers are the global audio source. It's a key tool for soundtracks")]
     AudioSource CameraAudio;
 
@@ -32,12 +34,24 @@ public class SoundManager : MonoBehaviour
             instance = this;
         }
 
-        thisAudio = GetComponent<AudioSource>();
-
+        // Finds the camera audio source
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
         if(camera != null)
         {
             CameraAudio = camera.GetComponent<AudioSource>();
+        }
+
+        // Finds all buttons that exist in the scene (added "true" to add inactive objects)
+        gameObjButtons = GameObject.FindObjectsOfType<Button>(true);
+
+        foreach(Button b in gameObjButtons)
+        {
+            b.onClick.AddListener(
+                delegate
+                {
+                    PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
+                }
+            );
         }
     }
 
@@ -49,6 +63,8 @@ public class SoundManager : MonoBehaviour
         // jumpLandBridge = Resources.Load<AudioClip>("sfx_jumpLandingBridge");
         // walkingStep = Resources.Load<AudioClip>("sfx_walkingStep");
         // walkingStepBridge = Resources.Load<AudioClip>("sfx_walkingStepBridge");
+
+        
     }
 
     void Update()
@@ -74,7 +90,6 @@ public class SoundManager : MonoBehaviour
     // To use this function, attach an audio source to the gameObject you
     // want the sound clip to play from
     public void PlaySound(SFX.PlayerSFX sound, GameObject audioSourceObj)
-    
     {
         AudioSource audioSource = audioSourceObj.GetComponent<AudioSource>();
 

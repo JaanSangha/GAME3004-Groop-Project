@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5974645490296745969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5974645490296745975}
+  - component: {fileID: 5974645490296745974}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5974645490296745975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5974645490296745969}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 27.528076, y: -8.470861, z: 11.505092}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5974645490296745974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5974645490296745969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d26b51ac6c29fc468738ee955e1e27e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraAudio: {fileID: 0}
+  playerDamage: {fileID: 8300000, guid: 7ad36142694762a4dab3cb032c5d9c37, type: 3}
+  jumpUp: {fileID: 8300000, guid: 69d6698c1eaa4a94db55cabfe4991e2d, type: 3}
+  jumpLand: {fileID: 0}
+  jumpLandBridge: {fileID: 0}
+  walkingStep: {fileID: 8300000, guid: 01c5107b4e6cad440a4bc53764ec8234, type: 3}
+  walkingStepBridge: {fileID: 0}
+  Pickup: {fileID: 0}
+  UIButtonClick: {fileID: 8300000, guid: 3ce8c7c6121266848af44d4e5cfb1c0f, type: 3}
