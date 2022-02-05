@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     private Animator playerAnimator;
     private Rigidbody rigidBody;
 
+    [SerializeField]
+    private InventorySystem inventorySystem;
+
     float xInput;
     float zInput;
     bool isJumping;
@@ -140,6 +143,21 @@ public class PlayerController : MonoBehaviour
 
             GameWin(true);    
   
+        }
+        if (other.gameObject.tag == "item1")
+        {
+            inventorySystem.num1++;
+            other.gameObject.SetActive(false);
+        }
+        if (other.gameObject.tag == "item2")
+        {
+            inventorySystem.num2++;
+            other.gameObject.SetActive(false);
+        }
+        if (other.gameObject.tag == "item3")
+        {
+            inventorySystem.num3++;
+            other.gameObject.SetActive(false);
         }
     }
     //gameover 

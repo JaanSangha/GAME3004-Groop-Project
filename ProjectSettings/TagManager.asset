@@ -8,6 +8,9 @@ TagManager:
   - goal
   - Moving Platform
   - Shrinking Platform
+  - item1
+  - item2
+  - item3
   layers:
   - Default
   - TransparentFX

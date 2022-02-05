@@ -1608,6 +1608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff4af8c7c11944f419fcbac9ed76dc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventorySystem: {fileID: 0}
   force: 4
   Health: 100
   Lives: 3
@@ -1625,6 +1626,9 @@ MonoBehaviour:
   GameOverScreen: {fileID: 0}
   GameOverText: {fileID: 0}
   ScoreText: {fileID: 0}
+  UIHeartOne: {fileID: 0}
+  UIHeartTwo: {fileID: 0}
+  UIHeartThree: {fileID: 0}
 --- !u!1 &4731404016867536558
 GameObject:
   m_ObjectHideFlags: 0
