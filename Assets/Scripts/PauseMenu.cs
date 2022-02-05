@@ -14,6 +14,8 @@ public class PauseMenu : MonoBehaviour
 
     void Awake() 
     {
+        Time.timeScale = 0;
+
         parent = transform.parent.gameObject;
 
         if(singleInstance != null)
@@ -57,6 +59,7 @@ public class PauseMenu : MonoBehaviour
 
     void onResumeButton()
     {
+        Time.timeScale = 1;
         SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
         Destroy(parent);
     }

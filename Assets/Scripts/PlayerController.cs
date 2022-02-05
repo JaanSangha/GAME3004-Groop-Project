@@ -44,12 +44,15 @@ public class PlayerController : MonoBehaviour
     public GameObject UIHeartTwo;
     public GameObject UIHeartThree;
 
+    public Transform SpawnPoint;
+
     private void Awake()
     {
         Time.timeScale = 1;
         playerAnimator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();
         playerScale = transform.localScale;
+        transform.position = SpawnPoint.position;
     }
     // Start is called before the first frame update
     void Start()
@@ -183,6 +186,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Water" || collision.gameObject.tag == "Enemy")
+        {
+            LoseLife();
+        }
+    }
     void LoseLife()
     {
         Lives--;
@@ -205,6 +215,7 @@ public class PlayerController : MonoBehaviour
             UIHeartTwo.SetActive(false);
             UIHeartThree.SetActive(false);
         }
+
         if (Lives < 1)
         {
             UIHeartOne.SetActive(false);
@@ -212,5 +223,13 @@ public class PlayerController : MonoBehaviour
             UIHeartThree.SetActive(false);
             GameOver(true);
         }
+
+        Respawn();
+    }
+
+    void Respawn()
+    {
+        transform.position = SpawnPoint.position;
+        rigidBody.velocity = Vector3.zero;
     }
 }
