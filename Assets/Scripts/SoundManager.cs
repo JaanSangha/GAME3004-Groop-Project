@@ -70,6 +70,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+
+    // To use this function, attach an audio source to the gameObject you
+    // want the sound clip to play from
     public void PlaySound(SFX.PlayerSFX sound, GameObject audioSourceObj)
     
     {
