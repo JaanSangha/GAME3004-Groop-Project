@@ -9,6 +9,8 @@ public class VanishingPlatform : MonoBehaviour
     public bool isActive = false;
     public float desiredTime = 5f;
     public float finalAlpha = 0.0f;
+    [Tooltip("The point of the textures alpha where the collider component disappears")]
+    public float IntangibilityAlpha = 0.5f;
     public AnimationCurve speedCurve;
     private float elapsedTime;
     private MeshRenderer meshRender;
@@ -50,11 +52,34 @@ public class VanishingPlatform : MonoBehaviour
         Color finalColor = new Color(originalColor.r, originalColor.g, originalColor.b, finalAlpha);
         elapsedTime += Time.deltaTime;
         float percentComplete = elapsedTime / desiredTime;
-        floorMat.color = Color.Lerp(originalColor, finalColor, speedCurve.Evaluate(percentComplete));
+        floorMat.color = Color.Lerp(originalColor, finalColor, speedCurve.Evaluate(Mathf.PingPong(percentComplete, 1)));
         
-        if(percentComplete >= 0.5f)
+        if(floorMat.color.a < IntangibilityAlpha)
         {
             platformCollider.enabled = false;
+        }
+        else if(floorMat.color.a >= IntangibilityAlpha)
+        {
+            platformCollider.enabled = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision other) 
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Player collision");
+            isActive = true;
+            other.transform.parent = this.transform;
+        }
+    }
+
+    private void OnCollisionExit(Collision other) 
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            isActive = false;
+            other.transform.SetParent(null);
         }
     }
 }

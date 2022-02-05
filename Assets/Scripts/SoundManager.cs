@@ -9,6 +9,8 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
 
     AudioSource thisAudio;
+    [SerializeField, Tooltip("Camera speakers are the global audio source. It's a key tool for soundtracks")]
+    AudioSource CameraAudio;
 
     [Header("Player SFX")]
     public AudioClip playerDamage;
@@ -31,6 +33,12 @@ public class SoundManager : MonoBehaviour
         }
 
         thisAudio = GetComponent<AudioSource>();
+
+        GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+        if(camera != null)
+        {
+            CameraAudio = camera.GetComponent<AudioSource>();
+        }
     }
 
     void Start()
@@ -51,13 +59,13 @@ public class SoundManager : MonoBehaviour
     // Add this function to UI button on clicks
     public void PlayMenuSound(SFX.UI_SFX sound)
     {
-        if(thisAudio == null) return;
+        if(CameraAudio == null) return;
 
         switch(sound)
         {
             case SFX.UI_SFX.BUTTON_CLICK:
                 //if(thisAudio.isPlaying == true) break;
-                thisAudio.PlayOneShot(UIButtonClick);
+                CameraAudio.PlayOneShot(UIButtonClick);
                 break;
         }
     }
