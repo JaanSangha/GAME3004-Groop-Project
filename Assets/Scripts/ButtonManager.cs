@@ -39,8 +39,11 @@ public class ButtonManager : MonoBehaviour
 
     public void GoToMainButton()
     {
-
-        //SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Main");
+    }
+    public void GoToOptionsButton()
+    {
+        SceneManager.LoadScene("Options");
     }
 
     public void PauseButton()
