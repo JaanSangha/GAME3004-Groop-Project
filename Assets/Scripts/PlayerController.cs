@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public int Health = 100;
     public int Lives = 3;
     public int Score = 0;
+    public float timeLeft = 300;
 
     [Header("Movement Properties")]
     public float moveSpeed = 5.0f;
@@ -39,6 +40,8 @@ public class PlayerController : MonoBehaviour
     public GameObject GameOverScreen;
     public TextMeshProUGUI GameOverText;
     public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI timerText;
+
 
     public GameObject UIHeartOne;
     public GameObject UIHeartTwo;
@@ -94,6 +97,10 @@ public class PlayerController : MonoBehaviour
 
             if(isGrounded) SoundManager.instance.PlaySound(SFX.PlayerSFX.WALK, this.gameObject);
         }
+
+        // timer countdown
+        timeLeft -= Time.deltaTime;
+        timerText.text = timeLeft.ToString("F0");
 
     }
 
@@ -163,6 +170,10 @@ public class PlayerController : MonoBehaviour
         {
             inventorySystem.num3++;
             other.gameObject.SetActive(false);
+        }
+        if(other.gameObject.tag == "Respawn")
+        {
+            SpawnPoint = other.transform;
         }
     }
     //gameover 
