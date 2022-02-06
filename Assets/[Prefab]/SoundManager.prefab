@@ -47,9 +47,9 @@ MonoBehaviour:
   CameraAudio: {fileID: 0}
   playerDamage: {fileID: 8300000, guid: 7ad36142694762a4dab3cb032c5d9c37, type: 3}
   jumpUp: {fileID: 8300000, guid: 69d6698c1eaa4a94db55cabfe4991e2d, type: 3}
-  jumpLand: {fileID: 0}
-  jumpLandBridge: {fileID: 0}
+  jumpLand: {fileID: 8300000, guid: 5df3158f5b01d1446bf203695d89b769, type: 3}
+  jumpLandBridge: {fileID: 8300000, guid: e168a6dacb2fefe4aa26550ad6807182, type: 3}
   walkingStep: {fileID: 8300000, guid: 01c5107b4e6cad440a4bc53764ec8234, type: 3}
-  walkingStepBridge: {fileID: 0}
-  Pickup: {fileID: 0}
+  walkingStepBridge: {fileID: 8300000, guid: 458ad19487a12c44c9b8a8b5d6327e28, type: 3}
+  Pickup: {fileID: 8300000, guid: 5f47820ecf3486b46b190b3c775cc277, type: 3}
   UIButtonClick: {fileID: 8300000, guid: 3ce8c7c6121266848af44d4e5cfb1c0f, type: 3}

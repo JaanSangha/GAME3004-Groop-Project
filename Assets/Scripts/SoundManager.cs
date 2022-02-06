@@ -104,32 +104,37 @@ public class SoundManager : MonoBehaviour
             case SFX.PlayerSFX.WALK:
                 audioSource.clip = walkingStep;
                 if(audioSource.isPlaying && audioSource.clip == walkingStep) break;
-                audioSource.Play();
+                audioSource.PlayOneShot(walkingStep);
                 break;
             case SFX.PlayerSFX.WALK_BRIDGE:
                 audioSource.clip = walkingStepBridge;
                 if(audioSource.isPlaying && audioSource.clip == walkingStepBridge) break;
-                audioSource.Play();
+                audioSource.PlayOneShot(walkingStepBridge);
                 break;
             case SFX.PlayerSFX.JUMP:
                 audioSource.clip = jumpUp;
                 if(audioSource.isPlaying && audioSource.clip == jumpUp) break;
-                audioSource.Play();
+                audioSource.PlayOneShot(jumpUp);
                 break;
             case SFX.PlayerSFX.JUMP_LAND:
                 audioSource.clip = jumpLand;
                 if(audioSource.isPlaying && audioSource.clip == jumpLand) break;
-                audioSource.Play();
+                audioSource.PlayOneShot(jumpLand);
                 break;
             case SFX.PlayerSFX.JUMP_LAND_BRIDGE:
                 audioSource.clip = jumpLandBridge;
                 if(audioSource.isPlaying && audioSource.clip == jumpLandBridge) break;
-                audioSource.Play();
+                audioSource.PlayOneShot(jumpLandBridge);
                 break;
             case SFX.PlayerSFX.PLAYER_DAMAGE:
                 audioSource.clip = playerDamage;
                 if(audioSource.isPlaying && audioSource.clip == playerDamage) break;
-                audioSource.Play();
+                audioSource.PlayOneShot(playerDamage);
+                break;
+            case SFX.PlayerSFX.PICKUP:
+                audioSource.clip = Pickup;
+                if(audioSource.isPlaying && audioSource.clip == Pickup) break;
+                audioSource.PlayOneShot(Pickup);
                 break;
 
         }
@@ -146,6 +151,6 @@ public class SoundManager : MonoBehaviour
 
         // skips playing if already playing
         if(specificSource.isPlaying && specificSource.clip == thisClip) return;
-        specificSource.Play();
+        specificSource.PlayOneShot(thisClip);
     }
 }

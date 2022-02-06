@@ -11,7 +11,8 @@ public static class SFX
         JUMP,
         JUMP_LAND,
         JUMP_LAND_BRIDGE,
-        PLAYER_DAMAGE
+        PLAYER_DAMAGE,
+        PICKUP
     }
 
     public enum UI_SFX

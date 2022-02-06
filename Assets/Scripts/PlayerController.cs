@@ -158,16 +158,19 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == "item1")
         {
+            SoundManager.instance.PlaySound(SFX.PlayerSFX.PICKUP, this.gameObject);
             inventorySystem.num1++;
             other.gameObject.SetActive(false);
         }
         if (other.gameObject.tag == "item2")
         {
+            SoundManager.instance.PlaySound(SFX.PlayerSFX.PICKUP, this.gameObject);
             inventorySystem.num2++;
             other.gameObject.SetActive(false);
         }
         if (other.gameObject.tag == "item3")
         {
+            SoundManager.instance.PlaySound(SFX.PlayerSFX.PICKUP, this.gameObject);
             inventorySystem.num3++;
             other.gameObject.SetActive(false);
         }
@@ -192,6 +195,7 @@ public class PlayerController : MonoBehaviour
     {
         if(isWin)
         {
+            SoundManager.instance.PlaySound(SFX.PlayerSFX.PICKUP, this.gameObject);
             GameOverScreen.SetActive(true);
             GameOverText.text = "You Win";
             ScoreText.text = Score.ToString();
