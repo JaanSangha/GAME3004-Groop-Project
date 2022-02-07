@@ -178,6 +178,23 @@ public class PlayerController : MonoBehaviour
         {
             SpawnPoint = other.transform;
         }
+        if (other.gameObject.tag == "Enemy") //same behaviour as obsticle
+        {
+            SoundManager.instance.PlaySound(SFX.PlayerSFX.PLAYER_DAMAGE, this.gameObject);
+
+            Debug.Log("Ouch");//for checking collision with hazard
+
+            //gives some knockback to player when colliding with hazard
+            Vector3 pushDirection = other.transform.position - transform.position;
+
+            pushDirection = -pushDirection.normalized;
+
+            GetComponent<Rigidbody>().AddForce(pushDirection * force * 100);
+
+            Health -= 10;
+
+            LoseLife();
+        }
     }
     //gameover 
     public void GameOver(bool isDead)

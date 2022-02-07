@@ -1614,6 +1614,7 @@ MonoBehaviour:
   Health: 100
   Lives: 3
   Score: 0
+  timeLeft: 300
   moveSpeed: 5
   gravity: -30
   jumpHeight: 0.8
@@ -1627,9 +1628,11 @@ MonoBehaviour:
   GameOverScreen: {fileID: 0}
   GameOverText: {fileID: 0}
   ScoreText: {fileID: 0}
+  timerText: {fileID: 0}
   UIHeartOne: {fileID: 0}
   UIHeartTwo: {fileID: 0}
   UIHeartThree: {fileID: 0}
+  SpawnPoint: {fileID: 0}
 --- !u!82 &3284061321591217631
 AudioSource:
   m_ObjectHideFlags: 0
