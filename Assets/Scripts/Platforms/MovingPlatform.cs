@@ -3,17 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class MovingPlatform : MonoBehaviour
+public class MovingPlatform : PlatformController
 {
     public Transform PointA;
     public Transform PointB;
-    
-    public bool isActive = false;
-    
-    public float desiredTime = 3f;
-    [SerializeField]
-    private AnimationCurve speedCurve;
-    private float elapsedTime;
 
     void Start()
     {

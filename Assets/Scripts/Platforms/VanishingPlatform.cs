@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VanishingPlatform : MonoBehaviour
+public class VanishingPlatform : PlatformController
 {
     private Color originalColor;
     private GameObject floor;
-    public bool isActive = false;
-    public float desiredTime = 5f;
     public float finalAlpha = 0.0f;
     [Tooltip("The point of the textures alpha where the collider component disappears")]
     public float IntangibilityAlpha = 0.5f;
-    public AnimationCurve speedCurve;
-    private float elapsedTime;
     private MeshRenderer meshRender;
     private Material floorMat;
     private Collider platformCollider;

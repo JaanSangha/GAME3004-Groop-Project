@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShrinkingPlatform : MonoBehaviour
+public class ShrinkingPlatform : PlatformController
 {
     private Vector3 originalScale;
     private Vector3 finalScale;
-    public bool isActive = false;
-    public float desiredTime = 2f;
     public float percentOfOriginalSize = 1f;
-    public AnimationCurve speedCurve;
-
-
-    private float elapsedTime;
     private GameObject playerCollided;
     private Vector3 collisionOriginalScale;
     private Collider platformCollider;

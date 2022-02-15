@@ -20,3 +20,15 @@ public static class SFX
         BUTTON_CLICK
     }
 }
+
+[System.Serializable]
+public struct SoundAssets
+{
+    [Header("Player SFX")]
+    public AudioClip playerDamage;
+    public AudioClip jumpUp, jumpLand, jumpLandBridge;
+    public AudioClip walkingStep, walkingStepBridge;
+    public AudioClip Pickup;
+    [Header("UI SFX")]
+    public AudioClip UIButtonClick;
+}
