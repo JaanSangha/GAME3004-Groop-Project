@@ -9,12 +9,28 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
 
-    Button[] gameObjButtons;
 
+    Button[] gameObjButtons;
     [SerializeField, Tooltip("Camera speakers are the global audio source. It's a key tool for soundtracks")]
-    AudioSource CameraAudio;
+    AudioSource CameraMusicAudio;
     [SerializeField]
-    public SoundAssets soundAssets;
+    AudioSource CameraSFXAudio;
+
+    [SerializeField]
+    SoundAssets soundAssets;
+
+
+    [Header("Options Sliders")]
+    [SerializeField]
+    Slider soundVolSlider;
+    [SerializeField]
+    Slider musicVolSlider;
+
+    [SerializeField, Range(0f, 1f)]
+    float SoundVolume;
+    [SerializeField, Range(0f, 1f)]
+    float MusicVolume;
+
     void Awake() 
     {
         if(instance != null)
@@ -28,30 +44,35 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Start()
     {
+        SoundVolume = 1f;
+        MusicVolume = 0.5f;
     }
 
     // Add this function to UI button on clicks
     public void PlayMenuSound(SFX.UI_SFX sound)
     {
-        if(CameraAudio == null) return;
+        if(CameraSFXAudio == null) return;
+
+        CameraSFXAudio.volume = SoundVolume;
 
         switch(sound)
         {
             case SFX.UI_SFX.BUTTON_CLICK:
                 //if(thisAudio.isPlaying == true) break;
-                CameraAudio.PlayOneShot(soundAssets.UIButtonClick);
+                CameraSFXAudio.PlayOneShot(soundAssets.UIButtonClick);
                 break;
         }
     }
-
 
     // To use this function, attach an audio source to the gameObject you
     // want the sound clip to play from
     public void PlaySound(SFX.PlayerSFX sound, GameObject audioSourceObj)
     {
         AudioSource audioSource = audioSourceObj.GetComponent<AudioSource>();
+
+        audioSource.volume = SoundVolume;
 
         if(audioSource == null)
         {
@@ -104,7 +125,6 @@ public class SoundManager : MonoBehaviour
         {
             Debug.Log("Sound Manager has no clip for this sound");
         }
-
         specificSource.clip = thisClip;
 
         // skips playing if already playing
@@ -127,10 +147,25 @@ public class SoundManager : MonoBehaviour
 
     void onNewSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // Finds the camera in the current scene
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
         if(camera != null)
         {
-            CameraAudio = camera.GetComponent<AudioSource>();
+            AudioSource[] cameraSounds = camera.GetComponents<AudioSource>();
+
+            foreach(var sound in cameraSounds)
+            {
+                if(sound.clip == null)
+                {
+                    CameraSFXAudio = sound;
+                    CameraSFXAudio.volume = SoundVolume;
+                }
+                else if(sound.clip != null)
+                {
+                    CameraMusicAudio = sound;
+                    CameraMusicAudio.volume = MusicVolume;
+                }
+            }
         }
 
         // Finds all buttons that exist in the scene (added "true" to add inactive objects)
@@ -144,6 +179,47 @@ public class SoundManager : MonoBehaviour
                     PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
                 }
             );
+        }
+
+        // Finds specific Sliders in the scene (When pause menu gets loaded)
+        Slider[] allObjects = GameObject.FindObjectsOfType<Slider>();
+
+        foreach(Slider sl in allObjects)
+        {
+            if(sl.gameObject.tag == "MusicSlider")
+            {
+                musicVolSlider = sl;
+                musicVolSlider.value = MusicVolume;
+
+                musicVolSlider.onValueChanged.AddListener(
+                    delegate
+                    {
+                        changeVolumeValue(musicVolSlider, ref MusicVolume);
+                        CameraMusicAudio.volume = MusicVolume;
+                    }
+                );
+            }
+            else if(sl.gameObject.tag == "SFXSlider")
+            {
+                soundVolSlider = sl;
+                soundVolSlider.value = SoundVolume;
+
+                soundVolSlider.onValueChanged.AddListener(
+                    delegate
+                    {
+                        changeVolumeValue(soundVolSlider, ref SoundVolume);
+                        CameraSFXAudio.volume = SoundVolume;
+                    }
+                );
+            }
+        }
+    }
+
+    void changeVolumeValue(Slider volSlider, ref float value)
+    {
+        if(volSlider != null)
+        {
+            value = volSlider.value;
         }
     }
 }

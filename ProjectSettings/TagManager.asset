@@ -13,6 +13,8 @@ TagManager:
   - item3
   - Water
   - Enemy
+  - MusicSlider
+  - SFXSlider
   layers:
   - Default
   - TransparentFX

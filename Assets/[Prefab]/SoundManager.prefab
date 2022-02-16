@@ -54,3 +54,7 @@ MonoBehaviour:
     walkingStepBridge: {fileID: 8300000, guid: 458ad19487a12c44c9b8a8b5d6327e28, type: 3}
     Pickup: {fileID: 8300000, guid: 5f47820ecf3486b46b190b3c775cc277, type: 3}
     UIButtonClick: {fileID: 8300000, guid: 3ce8c7c6121266848af44d4e5cfb1c0f, type: 3}
+  soundVolSlider: {fileID: 0}
+  musicVolSlider: {fileID: 0}
+  SoundVolume: 1
+  MusicVolume: 0.5
