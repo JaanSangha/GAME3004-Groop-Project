@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 
 public class SoundManager : MonoBehaviour
@@ -24,36 +24,12 @@ public class SoundManager : MonoBehaviour
         else
         {
             instance = this;
-        }
-
-        // Finds the camera audio source
-        GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
-        if(camera != null)
-        {
-            CameraAudio = camera.GetComponent<AudioSource>();
-        }
-
-        // Finds all buttons that exist in the scene (added "true" to add inactive objects)
-        gameObjButtons = GameObject.FindObjectsOfType<Button>(true);
-
-        foreach(Button b in gameObjButtons)
-        {
-            b.onClick.AddListener(
-                delegate
-                {
-                    PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
-                }
-            );
+            DontDestroyOnLoad(this);
         }
     }
 
     void Start()
     {
-    }
-
-    void Update()
-    {
-        
     }
 
     // Add this function to UI button on clicks
@@ -87,52 +63,43 @@ public class SoundManager : MonoBehaviour
         {
             case SFX.PlayerSFX.WALK:
                 //if(audioSource.isPlaying) audioSource.Stop();
-                audioSource.clip = soundAssets.walkingStep;
-                if(audioSource.isPlaying && audioSource.clip == soundAssets.walkingStep) break;
-                audioSource.PlayOneShot(soundAssets.walkingStep);
+                PlayInAudioSource(audioSource, soundAssets.walkingStep);
                 break;
             case SFX.PlayerSFX.WALK_BRIDGE:
                 //if(audioSource.isPlaying) audioSource.Stop();
-                audioSource.clip = soundAssets.walkingStepBridge;
-                if(audioSource.isPlaying && audioSource.clip == soundAssets.walkingStepBridge) break;
-                audioSource.PlayOneShot(soundAssets.walkingStepBridge);
+                PlayInAudioSource(audioSource, soundAssets.walkingStepBridge);
                 break;
             case SFX.PlayerSFX.JUMP:
                 if(audioSource.isPlaying) audioSource.Stop();
-                audioSource.clip = soundAssets.jumpUp;
-                if(audioSource.isPlaying && audioSource.clip == soundAssets.jumpUp) break;
-                audioSource.PlayOneShot(soundAssets.jumpUp);
+                PlayInAudioSource(audioSource, soundAssets.jumpUp);
                 break;
             case SFX.PlayerSFX.JUMP_LAND:
                 if(audioSource.isPlaying) audioSource.Stop();
-                audioSource.clip = soundAssets.jumpLand;
-                if(audioSource.isPlaying && audioSource.clip == soundAssets.jumpLand) break;
-                audioSource.PlayOneShot(soundAssets.jumpLand);
+                PlayInAudioSource(audioSource, soundAssets.jumpLand);
+                // audioSource.clip = soundAssets.jumpLand;
+                // if(audioSource.isPlaying && audioSource.clip == soundAssets.jumpLand) break;
+                // audioSource.PlayOneShot(soundAssets.jumpLand);
                 break;
             case SFX.PlayerSFX.JUMP_LAND_BRIDGE:
                 if(audioSource.isPlaying) audioSource.Stop();
-                audioSource.clip = soundAssets.jumpLandBridge;
-                if(audioSource.isPlaying && audioSource.clip == soundAssets.jumpLandBridge) break;
-                audioSource.PlayOneShot(soundAssets.jumpLandBridge);
+                PlayInAudioSource(audioSource, soundAssets.jumpLandBridge);
+                // audioSource.clip = soundAssets.jumpLandBridge;
+                // if(audioSource.isPlaying && audioSource.clip == soundAssets.jumpLandBridge) break;
+                // audioSource.PlayOneShot(soundAssets.jumpLandBridge);
                 break;
             case SFX.PlayerSFX.PLAYER_DAMAGE:
                 if(audioSource.isPlaying) audioSource.Stop();
-                audioSource.clip = soundAssets.playerDamage;
-                if(audioSource.isPlaying && audioSource.clip == soundAssets.playerDamage) break;
-                audioSource.PlayOneShot(soundAssets.playerDamage);
+                PlayInAudioSource(audioSource, soundAssets.playerDamage);
                 break;
             case SFX.PlayerSFX.PICKUP:
                 if(audioSource.isPlaying) audioSource.Stop();
-                audioSource.clip = soundAssets.Pickup;
-                if(audioSource.isPlaying && audioSource.clip == soundAssets.Pickup) break;
-                audioSource.PlayOneShot(soundAssets.Pickup);
+                PlayInAudioSource(audioSource, soundAssets.Pickup);
                 break;
         }
     }
 
     private void PlayInAudioSource(AudioSource specificSource, AudioClip thisClip)
     {
-        if(specificSource.isPlaying) specificSource.Stop();
         if(thisClip == null)
         {
             Debug.Log("Sound Manager has no clip for this sound");
@@ -143,5 +110,40 @@ public class SoundManager : MonoBehaviour
         // skips playing if already playing
         if(specificSource.isPlaying && specificSource.clip == thisClip) return;
         specificSource.PlayOneShot(thisClip);
+    }
+
+
+    // NEW LEVEL LOADED IMPLEMENTATION FUNCTIONS
+
+    void OnEnable() 
+    {
+        SceneManager.sceneLoaded += onNewSceneLoaded;
+    }
+
+    void OnDisable() 
+    {
+        SceneManager.sceneLoaded -= onNewSceneLoaded;
+    }
+
+    void onNewSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+        if(camera != null)
+        {
+            CameraAudio = camera.GetComponent<AudioSource>();
+        }
+
+        // Finds all buttons that exist in the scene (added "true" to add inactive objects)
+        gameObjButtons = GameObject.FindObjectsOfType<Button>(true);
+
+        foreach(Button b in gameObjButtons)
+        {
+            b.onClick.AddListener(
+                delegate
+                {
+                    PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
+                }
+            );
+        }
     }
 }
