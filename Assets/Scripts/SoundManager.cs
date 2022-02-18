@@ -27,9 +27,9 @@ public class SoundManager : MonoBehaviour
     Slider musicVolSlider;
 
     [SerializeField, Range(0f, 1f)]
-    float SoundVolume;
+    float SoundVolume = 1f;
     [SerializeField, Range(0f, 1f)]
-    float MusicVolume;
+    float MusicVolume = 0.5f;
 
     void Awake() 
     {
@@ -42,12 +42,6 @@ public class SoundManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this);
         }
-    }
-
-    private void Start()
-    {
-        SoundVolume = 1f;
-        MusicVolume = 0.5f;
     }
 
     // Add this function to UI button on clicks
@@ -182,7 +176,7 @@ public class SoundManager : MonoBehaviour
         }
 
         // Finds specific Sliders in the scene (When pause menu gets loaded)
-        Slider[] allObjects = GameObject.FindObjectsOfType<Slider>();
+        Slider[] allObjects = GameObject.FindObjectsOfType<Slider>(true);
 
         foreach(Slider sl in allObjects)
         {
