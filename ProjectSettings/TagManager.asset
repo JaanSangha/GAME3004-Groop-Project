@@ -15,6 +15,7 @@ TagManager:
   - Enemy
   - MusicSlider
   - SFXSlider
+  - BusSoundCol
   layers:
   - Default
   - TransparentFX

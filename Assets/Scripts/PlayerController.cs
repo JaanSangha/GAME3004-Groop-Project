@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI GameOverText;
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI timerText;
-
+    public Image fadePlane;
 
     public GameObject UIHeartOne;
     public GameObject UIHeartTwo;
@@ -195,16 +195,19 @@ public class PlayerController : MonoBehaviour
 
             LoseLife();
         }
+        if (other.gameObject.tag == "BusSoundCol")
+        {
+            SoundManager.instance.PlaySound(SFX.PlayerSFX.BUS, this.gameObject);
+        }
     }
     //gameover 
     public void GameOver(bool isDead)
     {
         if (isDead)
         {
-            GameOverScreen.SetActive(true);
+            OnGameOver();
             GameOverText.text = "Game Over";
             ScoreText.text = Score.ToString();
-            Time.timeScale = 0;
         }
     }
     //win
@@ -212,11 +215,10 @@ public class PlayerController : MonoBehaviour
     {
         if(isWin)
         {
+            OnGameOver();
             SoundManager.instance.PlaySound(SFX.PlayerSFX.PICKUP, this.gameObject);
-            GameOverScreen.SetActive(true);
             GameOverText.text = "You Win";
             ScoreText.text = Score.ToString();
-            Time.timeScale = 0;
         }
     }
 
@@ -267,5 +269,26 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = SpawnPoint.position;
         rigidBody.velocity = Vector3.zero;
+    }
+
+    void OnGameOver()
+    {
+        StartCoroutine(Fade(Color.clear, Color.cyan, 1));
+        GameOverScreen.SetActive(true);
+    }
+
+    IEnumerator Fade(Color from, Color to, float time)
+    {
+        float speed = 1 / time;
+        float percent = 0;
+
+        while (percent < 1)
+        {
+            percent += Time.deltaTime * speed;
+            fadePlane.color = Color.Lerp(from, to, percent);
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.1f);
+        Time.timeScale = 0;
     }
 }
