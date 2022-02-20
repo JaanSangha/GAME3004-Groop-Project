@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("IsJumping", isJumping);
 
 
-        transform.rotation = Quaternion.LookRotation(movement);
+        //transform.rotation = Quaternion.LookRotation(movement);
 
         float horizontalInput = Input.GetAxis("Vertical");
         float verticalInput = Input.GetAxis("Horizontal");

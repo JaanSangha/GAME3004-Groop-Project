@@ -19,7 +19,7 @@ public class CameraMovement : MonoBehaviour
     {
         xPos = player.transform.position.x;
         zPos = player.transform.position.z - 8;
-        yPos = player.transform.position.y + 2;
-        transform.position = new Vector3(player.position.x, player.position.y + 2, player.position.z -8);
+        yPos = player.transform.position.y + 4.7f;
+        transform.position = new Vector3(player.position.x, player.position.y + 4.7f, player.position.z -8);
     }
 }
