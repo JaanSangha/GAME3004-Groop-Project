@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
 
             pushDirection = -pushDirection.normalized;
 
-            GetComponent<Rigidbody>().AddForce(pushDirection * force * 100);
+            GetComponent<Rigidbody>().AddForce(pushDirection * force * 10);
 
             Health -= 10;
 
