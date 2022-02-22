@@ -275,11 +275,12 @@ public class PlayerController : MonoBehaviour
     {
         StartCoroutine(Fade(Color.clear, Color.cyan, 1));
         GameOverScreen.SetActive(true);
+      
     }
 
     IEnumerator Fade(Color from, Color to, float time)
     {
-        float speed = 1 / time;
+        float speed = 3 / time;
         float percent = 0;
 
         while (percent < 1)
@@ -288,7 +289,7 @@ public class PlayerController : MonoBehaviour
             fadePlane.color = Color.Lerp(from, to, percent);
             yield return null;
         }
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.06f);
         Time.timeScale = 0;
     }
 }
