@@ -399,6 +399,7 @@ GameObject:
   - component: {fileID: 2135395486}
   - component: {fileID: 2135395480}
   - component: {fileID: 6440418742732370875}
+  - component: {fileID: 3891814927575339736}
   m_Layer: 0
   m_Name: SlimePBR
   m_TagString: Enemy
@@ -525,10 +526,10 @@ MonoBehaviour:
   slowdownDistance: 0.6
   pickNextWaypointDist: 2
   endReachedDistance: 0.2
-  alwaysDrawGizmos: 1
+  alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 1
-  constrainInsideGraph: 1
+  whenCloseToDestination: 0
+  constrainInsideGraph: 0
 --- !u!54 &2135395486
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -552,7 +553,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919012471076396}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c545b81652025a4cacc5f46384f5115, type: 3}
   m_Name: 
@@ -572,6 +573,22 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.36, z: 0}
+--- !u!114 &3891814927575339736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919012471076396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 843ae26f5f846cb47a3a844fe6d48589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1989916952965676
 GameObject:
   m_ObjectHideFlags: 0
