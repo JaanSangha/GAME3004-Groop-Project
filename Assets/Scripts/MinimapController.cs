@@ -15,6 +15,6 @@ public class MinimapController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = new Vector3(player.position.x, player.position.y+ 10, player.position.z);
+        transform.position = new Vector3(player.position.x, transform.position.y, player.position.z);
     }
 }
