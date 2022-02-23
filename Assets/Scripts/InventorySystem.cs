@@ -57,6 +57,7 @@ public class InventorySystem : MonoBehaviour
         if(num1>0)
         {
             num1--;
+            SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
             Debug.Log("using boost!");
         }
     }
@@ -65,6 +66,7 @@ public class InventorySystem : MonoBehaviour
         if(num2>0)
         {
             num2--;
+            SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
             Debug.Log("using invincibility!");
         }
     }
@@ -73,6 +75,7 @@ public class InventorySystem : MonoBehaviour
         if(num3>0)
         {
             num3--;
+            SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
             Debug.Log("using projectile!");
         }
     }
