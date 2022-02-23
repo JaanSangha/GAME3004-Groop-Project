@@ -1711,6 +1711,8 @@ MonoBehaviour:
     m_Bits: 8
   isGrounded: 0
   GameOverScreen: {fileID: 0}
+  GameUIScreen: {fileID: 0}
+  InventorySystem: {fileID: 0}
   GameOverText: {fileID: 0}
   ScoreText: {fileID: 0}
   timerText: {fileID: 0}

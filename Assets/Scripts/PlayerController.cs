@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Text UI")]
     public GameObject GameOverScreen;
+    public GameObject GameUIScreen;
     public TextMeshProUGUI GameOverText;
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI timerText;
@@ -275,7 +276,8 @@ public class PlayerController : MonoBehaviour
     {
         StartCoroutine(Fade(Color.clear, Color.cyan, 1));
         GameOverScreen.SetActive(true);
-      
+        GameUIScreen.SetActive(false);
+        inventorySystem.gameObject.SetActive(false);
     }
 
     IEnumerator Fade(Color from, Color to, float time)
