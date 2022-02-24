@@ -74,8 +74,13 @@ public class PauseMenu : MonoBehaviour
         SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
     }
 
-    void onQuitButton()
+    public void onQuitButton()
     {
         SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }
