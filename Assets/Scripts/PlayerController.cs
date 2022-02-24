@@ -121,8 +121,7 @@ public class PlayerController : MonoBehaviour
             SoundManager.instance.PlaySound(SFX.PlayerSFX.JUMP, this.gameObject);
         }
 
-        playerAnimator.SetFloat("XVelocity", xVelocity);
-        playerAnimator.SetFloat("ZVelocity", zVelocity);
+        playerAnimator.SetFloat("Velocity", rigidBody.velocity.magnitude);
     }
 
     private void OnDrawGizmos()

@@ -21060,11 +21060,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5974645490296745974, guid: 5e80d0326d37c9542a158126c8d1563f,
-        type: 3}
-      propertyPath: soundAssets.BusSounds
-      value: 
-      objectReference: {fileID: 8300000, guid: fbc652f2675e14346ac126f5979ff84d, type: 3}
     - target: {fileID: 5974645490296745975, guid: 5e80d0326d37c9542a158126c8d1563f,
         type: 3}
       propertyPath: m_RootOrder
