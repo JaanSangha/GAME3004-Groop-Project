@@ -10111,6 +10111,11 @@ PrefabInstance:
       propertyPath: points.Array.data[2]
       value: 
       objectReference: {fileID: 664538414}
+    - target: {fileID: 7656185494420891834, guid: 55776efecb0cd134ea5f418c2f97a705,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 3937203024024712823}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55776efecb0cd134ea5f418c2f97a705, type: 3}
 --- !u!1 &1086673705
@@ -15989,7 +15994,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 54.5, y: 37.3}
+  m_AnchoredPosition: {x: 54.5, y: 37.30005}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1570944974
@@ -17577,6 +17582,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 868111383130636176, guid: 38efdaadbfe1d624bbee439cb02e7661,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 3937203024024712823}
     - target: {fileID: 6227660135589452164, guid: 38efdaadbfe1d624bbee439cb02e7661,
         type: 3}
       propertyPath: points.Array.data[0]
