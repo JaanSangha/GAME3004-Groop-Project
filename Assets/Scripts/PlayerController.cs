@@ -168,12 +168,6 @@ public class PlayerController : MonoBehaviour
             inventorySystem.num2++;
             other.gameObject.SetActive(false);
         }
-        if (other.gameObject.tag == "item3")
-        {
-            SoundManager.instance.PlaySound(SFX.PlayerSFX.PICKUP, this.gameObject);
-            inventorySystem.num3++;
-            other.gameObject.SetActive(false);
-        }
         if(other.gameObject.tag == "Respawn")
         {
             SpawnPoint = other.transform;

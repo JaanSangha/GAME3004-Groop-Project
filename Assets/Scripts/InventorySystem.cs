@@ -7,25 +7,18 @@ using TMPro;
 public class InventorySystem : MonoBehaviour
 {
     [SerializeField]
-    private Image tint1, tint2, tint3;
+    private Image tint1, tint2;
     [SerializeField]
-    private TMP_Text counter1, counter2, counter3;
+    private TMP_Text counter1, counter2;
     [SerializeField]
-    private Button image1, image2, image3;
+    private Button image1, image2;
 
-    public int num1, num2, num3;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int num1, num2;
 
-    // Update is called once per frame
     void Update()
     {
         counter1.text = num1.ToString();
         counter2.text = num2.ToString();
-        counter3.text = num3.ToString();
         if(num1>0)
         {
             tint1.gameObject.SetActive(false);
@@ -41,14 +34,6 @@ public class InventorySystem : MonoBehaviour
         else
         {
             tint2.gameObject.SetActive(true);
-        }
-        if (num3 > 0)
-        {
-            tint3.gameObject.SetActive(false);
-        }
-        else
-        {
-            tint3.gameObject.SetActive(true);
         }
 
     }
@@ -68,15 +53,6 @@ public class InventorySystem : MonoBehaviour
             num2--;
             SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
             Debug.Log("using invincibility!");
-        }
-    }
-    public void onButtonThreeClick()
-    {
-        if(num3>0)
-        {
-            num3--;
-            SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
-            Debug.Log("using projectile!");
         }
     }
 }
