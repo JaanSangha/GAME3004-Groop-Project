@@ -8,6 +8,7 @@ public class RotatingPickup : MonoBehaviour
     private float minY;
     private float maxY;
     private float moveDir = 0.5f;
+    public bool FullRotation;
 
     private void Start()
     {
@@ -18,7 +19,14 @@ public class RotatingPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(Time.deltaTime * 100, Time.deltaTime * 200, Time.deltaTime * 100));
+        if(FullRotation)
+        {
+            transform.Rotate(new Vector3(Time.deltaTime * 100, Time.deltaTime * 200, Time.deltaTime * 100));
+        }
+        else
+        {
+            transform.Rotate(new Vector3(0, Time.deltaTime * 200, 0));
+        }
 
         if (transform.position.y >= maxY)
         {

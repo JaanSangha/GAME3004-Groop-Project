@@ -207,7 +207,13 @@ public class PlayerController : MonoBehaviour
             inventorySystem.num2++;
             other.gameObject.SetActive(false);
         }
-        if(other.gameObject.tag == "CheckPointOne")
+        if (other.gameObject.tag == "item3")
+        {
+            SoundManager.instance.PlaySound(SFX.PlayerSFX.PICKUP, this.gameObject);
+            GainLife();
+            other.gameObject.SetActive(false);
+        }
+        if (other.gameObject.tag == "CheckPointOne")
         {
             if (!checkpointOneReached)
             {
@@ -315,6 +321,41 @@ public class PlayerController : MonoBehaviour
         }
 
         Respawn();
+    }
+
+    void GainLife()
+    {
+        if(Lives <3)
+        {
+            Lives++;
+        }
+
+        if (Lives == 3)
+        {
+            UIHeartOne.SetActive(true);
+            UIHeartTwo.SetActive(true);
+            UIHeartThree.SetActive(true);
+        }
+        else if (Lives == 2)
+        {
+            UIHeartOne.SetActive(true);
+            UIHeartTwo.SetActive(true);
+            UIHeartThree.SetActive(false);
+        }
+        else if (Lives == 1)
+        {
+            UIHeartOne.SetActive(true);
+            UIHeartTwo.SetActive(false);
+            UIHeartThree.SetActive(false);
+        }
+
+        if (Lives < 1)
+        {
+            UIHeartOne.SetActive(false);
+            UIHeartTwo.SetActive(false);
+            UIHeartThree.SetActive(false);
+            GameOver(true);
+        }
     }
 
     void Respawn()
