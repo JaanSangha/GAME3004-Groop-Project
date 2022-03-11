@@ -40,7 +40,7 @@ public class InventorySystem : MonoBehaviour
     }
     public void onButtonOneClick()
     {
-        if(num1>0 && !playerRef.GetComponent<PlayerController>().isBoosted)
+        if(num1>0 && !playerRef.GetComponent<PlayerController>().isBoosted && !playerRef.GetComponent<PlayerController>().isInvincible)
         {
             num1--;
             SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
@@ -50,7 +50,7 @@ public class InventorySystem : MonoBehaviour
     }
     public void onButtonTwoClick()
     {
-        if(num2>0)
+        if(num2>0 && !playerRef.GetComponent<PlayerController>().isBoosted && !playerRef.GetComponent<PlayerController>().isInvincible)
         {
             num2--;
             SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);

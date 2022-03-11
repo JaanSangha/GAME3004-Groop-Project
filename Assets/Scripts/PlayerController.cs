@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5.0f;
     public GameObject RightRunningShoe;
     public GameObject LeftRunningShoe;
-
+    public Material playerMaterial;
     public float force = 1;
 
     public int Health = 100;
@@ -122,6 +122,15 @@ public class PlayerController : MonoBehaviour
                 RightRunningShoe.SetActive(false);
             }
         }
+        if (isInvincible)
+        {
+            powerupTime += Time.deltaTime;
+            if (powerupTime > maxPowerupTime)
+            {
+                isInvincible = false;
+                playerMaterial.color = new Color(.7f, .8f, .8f);
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -151,22 +160,25 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "hazard")
+        if (!isInvincible)
         {
-            SoundManager.instance.PlaySound(SFX.PlayerSFX.PLAYER_DAMAGE, this.gameObject);
+            if (other.gameObject.tag == "hazard")
+            {
+                SoundManager.instance.PlaySound(SFX.PlayerSFX.PLAYER_DAMAGE, this.gameObject);
 
-            Debug.Log("Ouch");//for checking collision with hazard
+                Debug.Log("Ouch");//for checking collision with hazard
 
-            //gives some knockback to player when colliding with hazard
-            Vector3 pushDirection = other.transform.position - transform.position;
+                //gives some knockback to player when colliding with hazard
+                Vector3 pushDirection = other.transform.position - transform.position;
 
-            pushDirection = -pushDirection.normalized;
+                pushDirection = -pushDirection.normalized;
 
-            GetComponent<Rigidbody>().AddForce(pushDirection * force * 100);
+                GetComponent<Rigidbody>().AddForce(pushDirection * force * 100);
 
-            Health -= 10;
+                Health -= 10;
 
-            LoseLife();
+                LoseLife();
+            }
         }
         if (other.gameObject.tag == "goal")
         {
@@ -191,22 +203,25 @@ public class PlayerController : MonoBehaviour
         {
             SpawnPoint = other.transform;
         }
-        if (other.gameObject.tag == "Enemy") //same behaviour as obsticle
+        if (!isInvincible)
         {
-            SoundManager.instance.PlaySound(SFX.PlayerSFX.PLAYER_DAMAGE, this.gameObject);
+            if (other.gameObject.tag == "Enemy") //same behaviour as obsticle
+            {
+                SoundManager.instance.PlaySound(SFX.PlayerSFX.PLAYER_DAMAGE, this.gameObject);
 
-            Debug.Log("Ouch");//for checking collision with hazard
+                Debug.Log("Ouch");//for checking collision with hazard
 
-            //gives some knockback to player when colliding with hazard
-            Vector3 pushDirection = other.transform.position - transform.position;
+                //gives some knockback to player when colliding with hazard
+                Vector3 pushDirection = other.transform.position - transform.position;
 
-            pushDirection = -pushDirection.normalized;
+                pushDirection = -pushDirection.normalized;
 
-            GetComponent<Rigidbody>().AddForce(pushDirection * force * 10);
+                GetComponent<Rigidbody>().AddForce(pushDirection * force * 10);
 
-            Health -= 10;
+                Health -= 10;
 
-            LoseLife();
+                LoseLife();
+            }
         }
         if (other.gameObject.tag == "BusSoundCol")
         {
@@ -303,7 +318,9 @@ public class PlayerController : MonoBehaviour
     }
     public void InvinciblePowerUp()
     {
-
+        isInvincible = true;
+        powerupTime = 0;
+        playerMaterial.color = new Color(0, 1, 1);
     }
 
     IEnumerator Fade(Color from, Color to, float time)
