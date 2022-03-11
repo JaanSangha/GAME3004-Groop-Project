@@ -12,6 +12,8 @@ public class PauseMenu : MonoBehaviour
 
     GameObject parent;
 
+    public GameObject savingtext;
+
     void Awake() 
     {
         Time.timeScale = 0;
@@ -66,7 +68,9 @@ public class PauseMenu : MonoBehaviour
 
     void onSaveButton()
     {
+        StartCoroutine(SavingText());
         SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
+       
     }
 
     void onLoadButton()
@@ -83,4 +87,13 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+    IEnumerator SavingText()
+    {
+        Debug.Log("Saving");
+        savingtext.SetActive(true);
+        yield return new WaitForSeconds(1);
+        savingtext.SetActive(false);
+    }
+
 }
