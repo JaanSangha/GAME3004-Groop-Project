@@ -597,7 +597,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51443439}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 4.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7071,6 +7071,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 99f5a9a463ae37747a587ed26299f5ee,
     type: 3}
   m_PrefabInstance: {fileID: 1381692703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &871168175 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6249155188368375812, guid: 50264eb6ebf10c148a0b2877a35be0c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 52307307458308932}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &875343231 stripped
 GameObject:
@@ -19511,6 +19517,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 73212363}
     m_Modifications:
+    - target: {fileID: 3143557700571576197, guid: 846cf7eb4c69a26429905b6e909494d8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0cd985ee169a4c44dbf784a416270ea1, type: 2}
     - target: {fileID: 3143557700573571397, guid: 846cf7eb4c69a26429905b6e909494d8,
         type: 3}
       propertyPath: m_Name
@@ -20589,6 +20600,11 @@ PrefabInstance:
       objectReference: {fileID: 1963250546}
     - target: {fileID: 6987960060972255060, guid: 50264eb6ebf10c148a0b2877a35be0c5,
         type: 3}
+      propertyPath: playerMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: cfe0ce9944aeacd4f924339f5fc4693d, type: 2}
+    - target: {fileID: 6987960060972255060, guid: 50264eb6ebf10c148a0b2877a35be0c5,
+        type: 3}
       propertyPath: InventorySystem
       value: 
       objectReference: {fileID: 1708305618}
@@ -20607,6 +20623,11 @@ PrefabInstance:
       propertyPath: RightRunningShoe
       value: 
       objectReference: {fileID: 1650056099}
+    - target: {fileID: 6987960060972255060, guid: 50264eb6ebf10c148a0b2877a35be0c5,
+        type: 3}
+      propertyPath: runningParticles
+      value: 
+      objectReference: {fileID: 871168175}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50264eb6ebf10c148a0b2877a35be0c5, type: 3}
 --- !u!1001 &1377964789898435849
@@ -20848,7 +20869,7 @@ PrefabInstance:
     - target: {fileID: 3840996181237291276, guid: 02947c25de9b7414694705854365739a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -24.323753
+      value: -24.5
       objectReference: {fileID: 0}
     - target: {fileID: 3840996181237291276, guid: 02947c25de9b7414694705854365739a,
         type: 3}

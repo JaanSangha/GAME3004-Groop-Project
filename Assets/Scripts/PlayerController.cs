@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     private Animator playerAnimator;
     private Rigidbody rigidBody;
-
+    
     [SerializeField]
     private InventorySystem inventorySystem;
 
@@ -21,9 +21,12 @@ public class PlayerController : MonoBehaviour
     public bool isInvincible;
     public bool isBoosted;
     public float moveSpeed = 5.0f;
+
     public GameObject RightRunningShoe;
     public GameObject LeftRunningShoe;
     public Material playerMaterial;
+    public ParticleSystem runningParticles;
+
     public float force = 1;
 
     public int Health = 100;
@@ -120,6 +123,7 @@ public class PlayerController : MonoBehaviour
                 moveSpeed = 5;
                 LeftRunningShoe.SetActive(false);
                 RightRunningShoe.SetActive(false);
+                runningParticles.Stop();
             }
         }
         if (isInvincible)
@@ -315,6 +319,7 @@ public class PlayerController : MonoBehaviour
         powerupTime = 0;
         LeftRunningShoe.SetActive(true);
         RightRunningShoe.SetActive(true);
+        runningParticles.Play();
     }
     public void InvinciblePowerUp()
     {
