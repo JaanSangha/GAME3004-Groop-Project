@@ -20,12 +20,16 @@ public class PlayerController : MonoBehaviour
     private float maxPowerupTime = 5;
     public bool isInvincible;
     public bool isBoosted;
+    private bool checkpointOneReached;
+    private bool checkpointTwoReached;
     public float moveSpeed = 5.0f;
 
     public GameObject RightRunningShoe;
     public GameObject LeftRunningShoe;
     public Material playerMaterial;
     public ParticleSystem runningParticles;
+    public ParticleSystem CheckpointOneParticles;
+    public ParticleSystem CheckpointTwoParticles;
 
     public float force = 1;
 
@@ -203,9 +207,25 @@ public class PlayerController : MonoBehaviour
             inventorySystem.num2++;
             other.gameObject.SetActive(false);
         }
-        if(other.gameObject.tag == "Respawn")
+        if(other.gameObject.tag == "CheckPointOne")
         {
-            SpawnPoint = other.transform;
+            if (!checkpointOneReached)
+            {
+                SpawnPoint = other.transform;
+                CheckpointOneParticles.Play();
+                CheckpointTwoParticles.Play();
+                checkpointOneReached = true;
+            }
+        }
+        if (other.gameObject.tag == "CheckPointTwo")
+        {
+            if (!checkpointTwoReached)
+            {
+                SpawnPoint = other.transform;
+                CheckpointOneParticles.Play();
+                CheckpointTwoParticles.Play();
+                checkpointTwoReached = true;
+            }
         }
         if (!isInvincible)
         {

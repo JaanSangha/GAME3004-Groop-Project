@@ -16,6 +16,8 @@ TagManager:
   - MusicSlider
   - SFXSlider
   - BusSoundCol
+  - CheckPointOne
+  - CheckPointTwo
   layers:
   - Default
   - TransparentFX
