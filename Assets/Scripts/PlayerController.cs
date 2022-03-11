@@ -16,6 +16,13 @@ public class PlayerController : MonoBehaviour
     float zInput;
     bool isJumping;
     Vector3 playerScale;
+    private float powerupTime = 0;
+    private float maxPowerupTime = 5;
+    public bool isInvincible;
+    public bool isBoosted;
+    public float moveSpeed = 5.0f;
+    public GameObject RightRunningShoe;
+    public GameObject LeftRunningShoe;
 
     public float force = 1;
 
@@ -25,7 +32,6 @@ public class PlayerController : MonoBehaviour
     public float timeLeft = 300;
 
     [Header("Movement Properties")]
-    public float moveSpeed = 5.0f;
     public float gravity = -30.0f;
     public float jumpHeight = 5.0f;
     public Vector3 velocity;
@@ -62,13 +68,14 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        RightRunningShoe.SetActive(false);
+        LeftRunningShoe.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 movement = new Vector3(xInput, 0.0f, zInput);
+        //Vector3 movement = new Vector3(xInput, 0.0f, zInput);
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundRadius, groundMask);
 
@@ -104,6 +111,17 @@ public class PlayerController : MonoBehaviour
         timeLeft -= Time.deltaTime;
         timerText.text = timeLeft.ToString("F0");
 
+        if(isBoosted)
+        {
+            powerupTime += Time.deltaTime;
+            if (powerupTime > maxPowerupTime)
+            {
+                isBoosted = false;
+                moveSpeed = 5;
+                LeftRunningShoe.SetActive(false);
+                RightRunningShoe.SetActive(false);
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -273,6 +291,19 @@ public class PlayerController : MonoBehaviour
         GameOverBG.SetActive(true);
         GameUIScreen.SetActive(false);
         inventorySystem.gameObject.SetActive(false);
+    }
+
+    public void BoostPowerUp()
+    {
+        moveSpeed = moveSpeed * 2;
+        isBoosted = true;
+        powerupTime = 0;
+        LeftRunningShoe.SetActive(true);
+        RightRunningShoe.SetActive(true);
+    }
+    public void InvinciblePowerUp()
+    {
+
     }
 
     IEnumerator Fade(Color from, Color to, float time)

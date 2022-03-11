@@ -6,6 +6,7 @@ using TMPro;
 
 public class InventorySystem : MonoBehaviour
 {
+    public GameObject playerRef;
     [SerializeField]
     private Image tint1, tint2;
     [SerializeField]
@@ -39,11 +40,12 @@ public class InventorySystem : MonoBehaviour
     }
     public void onButtonOneClick()
     {
-        if(num1>0)
+        if(num1>0 && !playerRef.GetComponent<PlayerController>().isBoosted)
         {
             num1--;
             SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
             Debug.Log("using boost!");
+            playerRef.GetComponent<PlayerController>().BoostPowerUp();
         }
     }
     public void onButtonTwoClick()
@@ -53,6 +55,7 @@ public class InventorySystem : MonoBehaviour
             num2--;
             SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
             Debug.Log("using invincibility!");
+            playerRef.GetComponent<PlayerController>().InvinciblePowerUp();
         }
     }
 }
