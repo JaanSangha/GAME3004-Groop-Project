@@ -27,9 +27,9 @@ public class SoundManager : MonoBehaviour
     Slider musicVolSlider;
 
     [SerializeField, Range(0f, 1f)]
-    float SoundVolume = 1f;
+    public float SoundVolume = 1f;
     [SerializeField, Range(0f, 1f)]
-    float MusicVolume = 0.5f;
+    public float MusicVolume = 0.5f;
 
     void Awake() 
     {
@@ -135,15 +135,15 @@ public class SoundManager : MonoBehaviour
 
     void OnEnable() 
     {
-        SceneManager.sceneLoaded += NewSceneSoundManager;
+        //SceneManager.sceneLoaded += NewSceneSoundManager;
     }
 
     void OnDisable() 
     {
-        SceneManager.sceneLoaded -= NewSceneSoundManager;
+        //SceneManager.sceneLoaded -= NewSceneSoundManager;
     }
 
-    void NewSceneSoundManager(Scene scene, LoadSceneMode mode)
+    public void NewSceneSoundManager(Scene scene, LoadSceneMode mode)
     {
         // Finds the camera in the current scene
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");

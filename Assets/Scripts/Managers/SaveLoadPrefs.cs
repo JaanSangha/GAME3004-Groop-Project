@@ -28,33 +28,39 @@ public class SaveData
 
 public class SaveLoadPrefs : MonoBehaviour
 {
+    public Settings playerSettingsSO;
     public SaveData savedData;
 
     private void SaveSettings()
     {
-        PlayerPrefs.SetFloat(savedData.SFXVolume, savedData.soundVolSlider.value);
-        PlayerPrefs.SetFloat(savedData.MusicVolume, savedData.musicVolSlider.value);
+        playerSettingsSO.MusicVolume = savedData.soundVolSlider.value;
+        playerSettingsSO.SoundVolume = savedData.musicVolSlider.value;
 
-        PlayerPrefs.SetInt(savedData.InvertAxisX, savedData.InvertXAxis.isOn == true ? 1 : 0);
-        PlayerPrefs.SetInt(savedData.InvertAxisY, savedData.InvertYAxis.isOn == true ? 1 : 0);
-        PlayerPrefs.SetInt(savedData.DropdownOrientation, savedData.OrientationDropDown.value);
-
-        PlayerPrefs.Save();
+        playerSettingsSO.InvertXAxis = savedData.InvertXAxis.isOn;
+        playerSettingsSO.InvertYAxis = savedData.InvertYAxis.isOn;
+        playerSettingsSO.DropdownOrientation = savedData.OrientationDropDown.value;
         Debug.Log("Game data saved!");
     }
 
-    private void LoadSettings()
+    private void LoadSettingsUI()
     {
-        savedData.soundVolSlider.value = LoadFloatKey(savedData.SFXVolume);
+        /* savedData.soundVolSlider.value = LoadFloatKey(savedData.SFXVolume);
         savedData.musicVolSlider.value = LoadFloatKey(savedData.MusicVolume);
 
         // Key Mapping Settings
         savedData.InvertXAxis.isOn = Convert.ToBoolean(LoadIntKey(savedData.InvertAxisX));
         savedData.InvertYAxis.isOn = Convert.ToBoolean(LoadIntKey(savedData.InvertAxisY));
-        savedData.OrientationDropDown.value = LoadIntKey(savedData.DropdownOrientation);
+        savedData.OrientationDropDown.value = LoadIntKey(savedData.DropdownOrientation); */
+
+        savedData.soundVolSlider.value = playerSettingsSO.MusicVolume;
+        savedData.musicVolSlider.value = playerSettingsSO.SoundVolume;
+        
+        savedData.InvertXAxis.isOn = playerSettingsSO.InvertXAxis;
+        savedData.InvertYAxis.isOn = playerSettingsSO.InvertYAxis;
+        savedData.OrientationDropDown.value = playerSettingsSO.DropdownOrientation;
     }
 
-    float LoadFloatKey(string dataLoaded)
+    public float LoadFloatKey(string dataLoaded)
     {
         if (PlayerPrefs.HasKey(dataLoaded))
         {
@@ -124,6 +130,6 @@ public class SaveLoadPrefs : MonoBehaviour
 
     void onNewSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        LoadSettings();
+        LoadSettingsUI();
     }
 }
