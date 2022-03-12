@@ -15,5 +15,5 @@ MonoBehaviour:
   MusicVolume: 0
   SoundVolume: 1
   InvertYAxis: 0
-  InvertXAxis: 1
-  DropdownOrientation: 1
+  InvertXAxis: 0
+  DropdownOrientation: 0

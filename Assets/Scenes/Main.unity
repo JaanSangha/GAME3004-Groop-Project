@@ -3051,12 +3051,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42e1a7fa2e297634f9e68c6de3d93d7b, type: 3}
---- !u!1 &361032072 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2001832212521205084, guid: 50264eb6ebf10c148a0b2877a35be0c5,
-    type: 3}
-  m_PrefabInstance: {fileID: 52307307458308932}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &366767210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7447,12 +7441,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 99f5a9a463ae37747a587ed26299f5ee,
     type: 3}
   m_PrefabInstance: {fileID: 1381692703}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &871168175 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6249155188368375812, guid: 50264eb6ebf10c148a0b2877a35be0c5,
-    type: 3}
-  m_PrefabInstance: {fileID: 52307307458308932}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &875343231 stripped
 GameObject:
@@ -16779,12 +16767,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82aa890db6050a54c9a063fcda3c1689, type: 3}
---- !u!1 &1650056099 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 886251148113000546, guid: 50264eb6ebf10c148a0b2877a35be0c5,
-    type: 3}
-  m_PrefabInstance: {fileID: 52307307458308932}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1661027971 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4418529170629576585, guid: 50264eb6ebf10c148a0b2877a35be0c5,
@@ -17547,7 +17529,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1708305615}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708305618}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa2ffe4602e1b924d812140e67427523, type: 3}
@@ -17556,12 +17538,6 @@ MonoBehaviour:
 --- !u!224 &1708305617 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4689920906513744569, guid: c6bba0b4980bd674e95b970c9078c39f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1708305615}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1708305618 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4689920906513744574, guid: c6bba0b4980bd674e95b970c9078c39f,
     type: 3}
   m_PrefabInstance: {fileID: 1708305615}
   m_PrefabAsset: {fileID: 0}
@@ -21758,34 +21734,9 @@ PrefabInstance:
       objectReference: {fileID: 1963250546}
     - target: {fileID: 6987960060972255060, guid: 50264eb6ebf10c148a0b2877a35be0c5,
         type: 3}
-      propertyPath: playerMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: cfe0ce9944aeacd4f924339f5fc4693d, type: 2}
-    - target: {fileID: 6987960060972255060, guid: 50264eb6ebf10c148a0b2877a35be0c5,
-        type: 3}
-      propertyPath: InventorySystem
-      value: 
-      objectReference: {fileID: 1708305618}
-    - target: {fileID: 6987960060972255060, guid: 50264eb6ebf10c148a0b2877a35be0c5,
-        type: 3}
-      propertyPath: LeftRunningShoe
-      value: 
-      objectReference: {fileID: 361032072}
-    - target: {fileID: 6987960060972255060, guid: 50264eb6ebf10c148a0b2877a35be0c5,
-        type: 3}
       propertyPath: inventorySystem
       value: 
       objectReference: {fileID: 1708305616}
-    - target: {fileID: 6987960060972255060, guid: 50264eb6ebf10c148a0b2877a35be0c5,
-        type: 3}
-      propertyPath: RightRunningShoe
-      value: 
-      objectReference: {fileID: 1650056099}
-    - target: {fileID: 6987960060972255060, guid: 50264eb6ebf10c148a0b2877a35be0c5,
-        type: 3}
-      propertyPath: runningParticles
-      value: 
-      objectReference: {fileID: 871168175}
     - target: {fileID: 6987960060972255060, guid: 50264eb6ebf10c148a0b2877a35be0c5,
         type: 3}
       propertyPath: CheckpointOneParticles

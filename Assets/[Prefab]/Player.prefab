@@ -1666,6 +1666,7 @@ GameObject:
   - component: {fileID: 6987960060972255049}
   - component: {fileID: 6987960060972255051}
   - component: {fileID: 6987960060972255050}
+  - component: {fileID: 4731978024963571649}
   - component: {fileID: 6987960060972255060}
   - component: {fileID: 3284061321591217631}
   m_Layer: 0
@@ -1748,6 +1749,19 @@ CapsuleCollider:
   m_Height: 1.8886963
   m_Direction: 1
   m_Center: {x: 0.004802108, y: 0.8798508, z: 0.09227085}
+--- !u!114 &4731978024963571649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4418529170629576585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ce180f6d105f9408dc0b14b88c6e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!114 &6987960060972255060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1764,10 +1778,12 @@ MonoBehaviour:
   isInvincible: 0
   isBoosted: 0
   moveSpeed: 5
-  RightRunningShoe: {fileID: 0}
-  LeftRunningShoe: {fileID: 0}
-  playerMaterial: {fileID: 0}
-  runningParticles: {fileID: 0}
+  RightRunningShoe: {fileID: 886251148113000546}
+  LeftRunningShoe: {fileID: 2001832212521205084}
+  playerMaterial: {fileID: 2100000, guid: cfe0ce9944aeacd4f924339f5fc4693d, type: 2}
+  runningParticles: {fileID: 6249155188368375812}
+  CheckpointOneParticles: {fileID: 0}
+  CheckpointTwoParticles: {fileID: 0}
   force: 4
   Health: 100
   Lives: 3
@@ -1789,6 +1805,10 @@ MonoBehaviour:
   ScoreText: {fileID: 0}
   timerText: {fileID: 0}
   fadePlane: {fileID: 0}
+  leftJoystick: {fileID: 0}
+  JSInvertX: 1
+  JSInvertY: 1
+  miniMap: {fileID: 0}
   UIHeartOne: {fileID: 0}
   UIHeartTwo: {fileID: 0}
   UIHeartThree: {fileID: 0}
@@ -4011,6 +4031,12 @@ PrefabInstance:
 --- !u!4 &1100832015128449546 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6778038825839998231, guid: dc4424cfc33a18a4c9c0f76cef2fcd6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5861046255461099293}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6249155188368375812 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 571934118365423385, guid: dc4424cfc33a18a4c9c0f76cef2fcd6b,
     type: 3}
   m_PrefabInstance: {fileID: 5861046255461099293}
   m_PrefabAsset: {fileID: 0}
