@@ -9,7 +9,6 @@ using TMPro;
 [System.Serializable]
 public class SaveData
 {
-    
     [Header("Sound Settings")]
     public Slider soundVolSlider;
     public string SFXVolume = "SFXVolume";
@@ -24,9 +23,7 @@ public class SaveData
     public string DropdownOrientation = "OrientationDropDown";
 
     public SaveData()
-    {
-        
-    }
+    {}
 }
 
 public class SaveLoadPrefs : MonoBehaviour
@@ -48,77 +45,13 @@ public class SaveLoadPrefs : MonoBehaviour
 
     private void LoadSettings()
     {
-        if (PlayerPrefs.HasKey(savedData.SFXVolume))
-        {
-            var SFXVolume = PlayerPrefs.GetFloat(savedData.SFXVolume);
+        savedData.soundVolSlider.value = LoadFloatKey(savedData.SFXVolume);
+        savedData.musicVolSlider.value = LoadFloatKey(savedData.MusicVolume);
 
-            savedData.soundVolSlider.value = SFXVolume;
-            Debug.Log("Game data loaded!");
-        }
-        else
-        {
-            Debug.LogError("There is no save data!");
-        }
-
-        //savedData.soundVolSlider.value = LoadFloatKey(savedData.SFXVolume);
-
-        if (PlayerPrefs.HasKey(savedData.MusicVolume))
-        {
-            var MusicVolume = PlayerPrefs.GetFloat(savedData.MusicVolume);
-
-            savedData.musicVolSlider.value = MusicVolume;
-            Debug.Log("Game data loaded!");
-        }
-        else
-        {
-            Debug.LogError("There is no save data!");
-        }
-
-        //savedData.musicVolSlider.value = LoadFloatKey(savedData.MusicVolume);
-
-        // Key Mapping Loaded
-
-        if (PlayerPrefs.HasKey(savedData.InvertAxisX))
-        {
-            bool invertX = Convert.ToBoolean(PlayerPrefs.GetInt(savedData.InvertAxisX));
-
-            savedData.InvertXAxis.isOn = invertX;
-            Debug.Log("Game data loaded!");
-        }
-        else
-        {
-            Debug.LogError("There is no save data!");
-        }
-
-        //savedData.InvertXAxis.isOn = Convert.ToBoolean(LoadIntKey(savedData.InvertAxisX));
-
-        if (PlayerPrefs.HasKey(savedData.InvertAxisY))
-        {
-            bool invertY = Convert.ToBoolean(PlayerPrefs.GetInt(savedData.InvertAxisY));
-
-            savedData.InvertYAxis.isOn = invertY;
-            Debug.Log("Game data loaded!");
-        }
-        else
-        {
-            Debug.LogError("There is no save data!");
-        }
-
-        //savedData.InvertYAxis.isOn = Convert.ToBoolean(LoadIntKey(savedData.InvertAxisY));
-        
-        if (PlayerPrefs.HasKey(savedData.DropdownOrientation))
-        {
-            var orientation = PlayerPrefs.GetInt(savedData.DropdownOrientation);
-
-            savedData.OrientationDropDown.value = orientation;
-            Debug.Log("Game data loaded!");
-        }
-        else
-        {
-            Debug.LogError("There is no save data!");
-        }
-
-        //savedData.OrientationDropDown.value = LoadIntKey(savedData.DropdownOrientation);
+        // Key Mapping Settings
+        savedData.InvertXAxis.isOn = Convert.ToBoolean(LoadIntKey(savedData.InvertAxisX));
+        savedData.InvertYAxis.isOn = Convert.ToBoolean(LoadIntKey(savedData.InvertAxisY));
+        savedData.OrientationDropDown.value = LoadIntKey(savedData.DropdownOrientation);
     }
 
     float LoadFloatKey(string dataLoaded)
