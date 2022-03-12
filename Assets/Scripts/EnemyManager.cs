@@ -7,13 +7,16 @@ public class EnemyManager : MonoBehaviour
 {
     public Transform player;
     private NavMeshAgent agent;
-    private float EnemyRange = 10;
+    [SerializeField]
+    private float EnemySightRange = 10;
     [SerializeField]
     private EnemyBehaviour EnemyState = EnemyBehaviour.PATROL;
-    
+    public Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -23,15 +26,17 @@ public class EnemyManager : MonoBehaviour
         SwitchStates();
         float dist = Vector3.Distance(player.position, agent.transform.position);
         print("Distance to Player: " + dist);
-        if (dist < EnemyRange)
+        if (dist < EnemySightRange)
         {
             EnemyState = EnemyBehaviour.CHASE;
         
 
         }
-        else if(dist >= EnemyRange)
+        else if(dist >= EnemySightRange)
         {
           
+           //StartCoroutine("Idle");
+           // print("Idle finished, Switching to Patrol");
             EnemyState = EnemyBehaviour.PATROL;
         }
         //More will go here later
@@ -53,12 +58,19 @@ public class EnemyManager : MonoBehaviour
             //case EnemyBehaviour.ATTACK:
             //    break;
             //case EnemyBehaviour.IDLE:
+            //    agent.GetComponent<EnemyController>().enabled = false;
+            //    agent.GetComponent<EnemyPatrol>().enabled = false;
             //    break;
 
         }
 
     }
-   
+    //IEnumerator Idle()
+    //{
+    //    EnemyState = EnemyBehaviour.IDLE;
+    //    anim.Play("IdleBattle");
+    //    yield return new WaitForSeconds(2.0f);
+    //}
 
 
 }
