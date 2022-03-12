@@ -27,9 +27,9 @@ public class SoundManager : MonoBehaviour
     Slider musicVolSlider;
 
     [SerializeField, Range(0f, 1f)]
-    float SoundVolume = 1f;
+    public float SoundVolume = 1f;
     [SerializeField, Range(0f, 1f)]
-    float MusicVolume = 0.5f;
+    public float MusicVolume = 0.5f;
 
     void Awake() 
     {
@@ -91,16 +91,10 @@ public class SoundManager : MonoBehaviour
             case SFX.PlayerSFX.JUMP_LAND:
                 if(audioSource.isPlaying) audioSource.Stop();
                 PlayInAudioSource(audioSource, soundAssets.jumpLand);
-                // audioSource.clip = soundAssets.jumpLand;
-                // if(audioSource.isPlaying && audioSource.clip == soundAssets.jumpLand) break;
-                // audioSource.PlayOneShot(soundAssets.jumpLand);
                 break;
             case SFX.PlayerSFX.JUMP_LAND_BRIDGE:
                 if(audioSource.isPlaying) audioSource.Stop();
                 PlayInAudioSource(audioSource, soundAssets.jumpLandBridge);
-                // audioSource.clip = soundAssets.jumpLandBridge;
-                // if(audioSource.isPlaying && audioSource.clip == soundAssets.jumpLandBridge) break;
-                // audioSource.PlayOneShot(soundAssets.jumpLandBridge);
                 break;
             case SFX.PlayerSFX.PLAYER_DAMAGE:
                 if(audioSource.isPlaying) audioSource.Stop();
@@ -132,18 +126,7 @@ public class SoundManager : MonoBehaviour
 
 
     // NEW LEVEL LOADED IMPLEMENTATION FUNCTIONS
-
-    void OnEnable() 
-    {
-        SceneManager.sceneLoaded += onNewSceneLoaded;
-    }
-
-    void OnDisable() 
-    {
-        SceneManager.sceneLoaded -= onNewSceneLoaded;
-    }
-
-    void onNewSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void NewSceneSoundManager()
     {
         // Finds the camera in the current scene
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
