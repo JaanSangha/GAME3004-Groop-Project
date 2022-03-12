@@ -47,13 +47,14 @@ public class SceneManagement : MonoBehaviour // Singleton<SceneManagement>
     void onNewSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         LoadSoundSettings();
-        SoundManager.instance.NewSceneSoundManager(scene, mode);
+        SoundManager.instance.NewSceneSoundManager();
 
         if(scene.name != "Menu" && scene.name != "Options")
         {
             Debug.Log("Game Time");
             // finding onscreen buttons here
             LoadKeyMappings();
+            GameManager.instance.ApplyKeyMappings();
         }
     }
 }

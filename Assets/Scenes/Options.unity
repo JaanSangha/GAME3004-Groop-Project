@@ -1759,12 +1759,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSettingsSO: {fileID: 11400000, guid: bcaa3480859f883489d9cbf543408c2d, type: 2}
-  savedData:
+  UIDisplay:
     soundVolSlider: {fileID: 263236154}
     musicVolSlider: {fileID: 1356423388}
     InvertYAxis: {fileID: 218812381}
     InvertXAxis: {fileID: 1299377546}
-    OrientationDropDown: {fileID: 348645597}
+    DropdownOrientation: {fileID: 348645597}
 --- !u!1 &508699520
 GameObject:
   m_ObjectHideFlags: 0

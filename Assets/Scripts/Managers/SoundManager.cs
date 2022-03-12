@@ -126,7 +126,7 @@ public class SoundManager : MonoBehaviour
 
 
     // NEW LEVEL LOADED IMPLEMENTATION FUNCTIONS
-    public void NewSceneSoundManager(Scene scene, LoadSceneMode mode)
+    public void NewSceneSoundManager()
     {
         // Finds the camera in the current scene
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");

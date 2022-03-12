@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 [System.Serializable]
@@ -15,13 +13,13 @@ public struct SaveData
     [Header("Key Mapping Settings")]
     public Toggle InvertYAxis;
     public Toggle InvertXAxis;
-    public TMP_Dropdown OrientationDropDown;
+    public TMP_Dropdown DropdownOrientation;
 }
 
 public class SaveLoadPrefs : MonoBehaviour
 {
     public Settings playerSettingsSO;
-    public SaveData savedData;
+    public SaveData UIDisplay;
 
     void Start()
     {
@@ -30,23 +28,23 @@ public class SaveLoadPrefs : MonoBehaviour
 
     private void SaveSettings()
     {
-        playerSettingsSO.MusicVolume = savedData.musicVolSlider.value;
-        playerSettingsSO.SoundVolume = savedData.soundVolSlider.value;
+        playerSettingsSO.MusicVolume = UIDisplay.musicVolSlider.value;
+        playerSettingsSO.SoundVolume = UIDisplay.soundVolSlider.value;
 
-        playerSettingsSO.InvertXAxis = savedData.InvertXAxis.isOn;
-        playerSettingsSO.InvertYAxis = savedData.InvertYAxis.isOn;
-        playerSettingsSO.DropdownOrientation = savedData.OrientationDropDown.value;
+        playerSettingsSO.InvertXAxis = UIDisplay.InvertXAxis.isOn;
+        playerSettingsSO.InvertYAxis = UIDisplay.InvertYAxis.isOn;
+        playerSettingsSO.DropdownOrientation = UIDisplay.DropdownOrientation.value;
         Debug.Log("Game data saved!");
     }
 
     private void LoadSettingsUI()
     {
-        savedData.musicVolSlider.value = playerSettingsSO.MusicVolume;
-        savedData.soundVolSlider.value = playerSettingsSO.SoundVolume;
+        UIDisplay.musicVolSlider.value = playerSettingsSO.MusicVolume;
+        UIDisplay.soundVolSlider.value = playerSettingsSO.SoundVolume;
         
-        savedData.InvertXAxis.isOn = playerSettingsSO.InvertXAxis;
-        savedData.InvertYAxis.isOn = playerSettingsSO.InvertYAxis;
-        savedData.OrientationDropDown.value = playerSettingsSO.DropdownOrientation;
+        UIDisplay.InvertXAxis.isOn = playerSettingsSO.InvertXAxis;
+        UIDisplay.InvertYAxis.isOn = playerSettingsSO.InvertYAxis;
+        UIDisplay.DropdownOrientation.value = playerSettingsSO.DropdownOrientation;
     }
 
     void OnDestroy()

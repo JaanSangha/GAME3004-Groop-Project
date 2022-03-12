@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameManager instance;
+
+    [Header("Touch Controls")]
+    public Joystick joystick;
+    public TouchButtonInput touchButtons;
+
+    void Awake()
     {
-        
+        if(instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ApplyKeyMappings()
     {
-        
+
     }
 }
