@@ -2811,6 +2811,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 303515762}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &314101769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 314101770}
+  m_Layer: 0
+  m_Name: AI Patrol Points Middle 5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &314101770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314101769}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 122.24, y: 0.5, z: -0.11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 34
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &339088567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2093682729765248584, guid: 42e1a7fa2e297634f9e68c6de3d93d7b,
@@ -3137,14 +3168,19 @@ PrefabInstance:
       objectReference: {fileID: 3937203024024712823}
     - target: {fileID: 6227660135589452164, guid: 38efdaadbfe1d624bbee439cb02e7661,
         type: 3}
+      propertyPath: points.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227660135589452164, guid: 38efdaadbfe1d624bbee439cb02e7661,
+        type: 3}
       propertyPath: points.Array.data[0]
       value: 
-      objectReference: {fileID: 2019354950}
+      objectReference: {fileID: 1158288262}
     - target: {fileID: 6227660135589452164, guid: 38efdaadbfe1d624bbee439cb02e7661,
         type: 3}
       propertyPath: points.Array.data[1]
       value: 
-      objectReference: {fileID: 1126896506}
+      objectReference: {fileID: 314101770}
     - target: {fileID: 6227660135589452164, guid: 38efdaadbfe1d624bbee439cb02e7661,
         type: 3}
       propertyPath: points.Array.data[2]
@@ -6736,6 +6772,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.2785676, y: 11.513629, z: 101.41696}
   m_Center: {x: 26.433554, y: 4.464526, z: 49.844284}
+--- !u!1 &794990472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 794990473}
+  m_Layer: 0
+  m_Name: AI Patrol Point Middle 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &794990473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794990472}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 61.61, y: 0.171, z: 11.294}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 30
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &796791819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11100,6 +11167,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1155427492}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1158288261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1158288262}
+  m_Layer: 0
+  m_Name: AI Patrol Points Middle 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1158288262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158288261}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 84.05, y: 0.5, z: -0.27}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 33
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1160401769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16517,14 +16615,19 @@ PrefabInstance:
       objectReference: {fileID: 3937203024024712823}
     - target: {fileID: 6227660135589452164, guid: 38efdaadbfe1d624bbee439cb02e7661,
         type: 3}
+      propertyPath: points.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227660135589452164, guid: 38efdaadbfe1d624bbee439cb02e7661,
+        type: 3}
       propertyPath: points.Array.data[0]
       value: 
-      objectReference: {fileID: 2019354950}
+      objectReference: {fileID: 1158288262}
     - target: {fileID: 6227660135589452164, guid: 38efdaadbfe1d624bbee439cb02e7661,
         type: 3}
       propertyPath: points.Array.data[1]
       value: 
-      objectReference: {fileID: 1126896506}
+      objectReference: {fileID: 314101770}
     - target: {fileID: 6227660135589452164, guid: 38efdaadbfe1d624bbee439cb02e7661,
         type: 3}
       propertyPath: points.Array.data[2]
@@ -18338,17 +18441,17 @@ PrefabInstance:
         type: 3}
       propertyPath: points.Array.data[0]
       value: 
-      objectReference: {fileID: 2019354950}
+      objectReference: {fileID: 794990473}
     - target: {fileID: 3891814927575339736, guid: 55776efecb0cd134ea5f418c2f97a705,
         type: 3}
       propertyPath: points.Array.data[1]
       value: 
-      objectReference: {fileID: 1126896506}
+      objectReference: {fileID: 2064525433}
     - target: {fileID: 3891814927575339736, guid: 55776efecb0cd134ea5f418c2f97a705,
         type: 3}
       propertyPath: points.Array.data[2]
       value: 
-      objectReference: {fileID: 664538414}
+      objectReference: {fileID: 1800215687}
     - target: {fileID: 7656185494420891834, guid: 55776efecb0cd134ea5f418c2f97a705,
         type: 3}
       propertyPath: player
@@ -18537,6 +18640,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42e1a7fa2e297634f9e68c6de3d93d7b, type: 3}
+--- !u!1 &1800215686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1800215687}
+  m_Layer: 0
+  m_Name: AI Patrol Points Middle 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1800215687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800215686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 68.78, y: 0.5, z: -0.11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 32
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1802505818 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 478454, guid: 80e74acf412f1f7419369c6003532087,
@@ -20199,6 +20333,37 @@ Transform:
   - {fileID: 436853191}
   m_Father: {fileID: 0}
   m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2064525432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2064525433}
+  m_Layer: 0
+  m_Name: 'AI Patrol Points Middle 2 '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2064525433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064525432}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 68.61, y: 0.5, z: 11.027}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2065297069 stripped
 Transform:
