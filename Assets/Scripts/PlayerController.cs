@@ -258,6 +258,8 @@ public class PlayerController : MonoBehaviour
                 Health -= 10;
 
                 LoseLife();
+
+                Destroy(other.gameObject);
             }
         }
         if (other.gameObject.tag == "BusSoundCol")
