@@ -28,13 +28,22 @@ class SaveGameData
 public class SaveLoadGame : MonoBehaviour
 {
     public Transform player;
+    [SerializeField]
+    List<Transform> allTransforms;
 
     void Start()
     {
-        player = gameObject.transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
+        // Gets rigidbodies of all gameObjects in the scene
+        Rigidbody[] allRb = GameObject.FindObjectsOfType<Rigidbody>(true);
+
+        foreach(Rigidbody rb in allRb)
+        {
+            allTransforms.Add(rb.gameObject.transform);
+        }
     }
-    
+
     void SaveGame()
     {
         // Binary formatter method of saving player position
@@ -48,7 +57,23 @@ public class SaveLoadGame : MonoBehaviour
         data.PlayerRotation[SaveDataIndex.X] = player.localEulerAngles.x;
         data.PlayerRotation[SaveDataIndex.Y] = player.localEulerAngles.y;
         data.PlayerRotation[SaveDataIndex.Z] = player.localEulerAngles.z;
-        bf.Serialize(file, data);
+
+        List<SaveGameData> datas = new List<SaveGameData>();
+        foreach(Transform tr in allTransforms)
+        {
+            var newData = new SaveGameData();
+            newData.PlayerPosition[SaveDataIndex.X] = tr.position.x;
+            newData.PlayerPosition[SaveDataIndex.Y] = tr.position.y;
+            newData.PlayerPosition[SaveDataIndex.Z] = tr.position.z;
+
+            newData.PlayerRotation[SaveDataIndex.X] = tr.localEulerAngles.x;
+            newData.PlayerRotation[SaveDataIndex.Y] = tr.localEulerAngles.y;
+            newData.PlayerRotation[SaveDataIndex.Z] = tr.localEulerAngles.z;
+
+            datas.Add(newData);
+        }
+        bf.Serialize(file, datas);
+        //bf.Serialize(file, data);
         file.Close();
         Debug.Log("Game data saved!");
     }
@@ -85,10 +110,6 @@ public class SaveLoadGame : MonoBehaviour
 
     void ResetData()
     {
-        // Player Prefs Method of Resetting Data
-        /* PlayerPrefs.DeleteAll();
-        Debug.Log("Data reset complete"); */
-
         // Binary Method of Resetting Data
         if (File.Exists(Application.persistentDataPath + "/MySaveData.dat"))
         {

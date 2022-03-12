@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     static PauseMenu singleInstance;
 
     GameObject resumeButton, saveButton;
-    GameObject loadButton, quitButton;
+    GameObject loadButton, optionsButton, quitButton;
 
     GameObject parent;
 
@@ -47,6 +48,10 @@ public class PauseMenu : MonoBehaviour
             {
                 loadButton = b.gameObject;
             }
+            else if(b.gameObject.name == "OptionsButton")
+            {
+                optionsButton = b.gameObject;
+            }
             else if(b.gameObject.name == "QuitButton")
             {
                 quitButton = b.gameObject;
@@ -56,6 +61,7 @@ public class PauseMenu : MonoBehaviour
         resumeButton.GetComponent<Button>().onClick.AddListener(onResumeButton);
         saveButton.GetComponent<Button>().onClick.AddListener(onSaveButton);
         loadButton.GetComponent<Button>().onClick.AddListener(onLoadButton);
+        //optionsButton.GetComponent<Button>().onClick.AddListener(onOptionsButton);
         quitButton.GetComponent<Button>().onClick.AddListener(onQuitButton);
     }
 
@@ -76,6 +82,12 @@ public class PauseMenu : MonoBehaviour
     void onLoadButton()
     {
         SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
+    }
+
+    public void onOptionsButton()
+    {
+        SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
+        SceneManager.LoadScene("Options");
     }
 
     public void onQuitButton()
