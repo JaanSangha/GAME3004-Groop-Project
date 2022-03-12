@@ -22,10 +22,15 @@ public class SceneManagement : MonoBehaviour // Singleton<SceneManagement>
         }
     }
 
-    void LoadPlayerSettings()
+    void LoadSoundSettings()
     {
         SoundManager.instance.MusicVolume = playerSettingsSO.MusicVolume;
         SoundManager.instance.SoundVolume = playerSettingsSO.SoundVolume;
+    }
+
+    void LoadKeyMappings()
+    {
+
     }
     
     // NEW LEVEL LOADED IMPLEMENTATION FUNCTIONS
@@ -41,12 +46,14 @@ public class SceneManagement : MonoBehaviour // Singleton<SceneManagement>
 
     void onNewSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        LoadPlayerSettings();
+        LoadSoundSettings();
         SoundManager.instance.NewSceneSoundManager(scene, mode);
 
         if(scene.name != "Menu" && scene.name != "Options")
         {
-            
+            Debug.Log("Game Time");
+            // finding onscreen buttons here
+            LoadKeyMappings();
         }
     }
 }

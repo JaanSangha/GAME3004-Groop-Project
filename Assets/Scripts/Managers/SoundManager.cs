@@ -91,16 +91,10 @@ public class SoundManager : MonoBehaviour
             case SFX.PlayerSFX.JUMP_LAND:
                 if(audioSource.isPlaying) audioSource.Stop();
                 PlayInAudioSource(audioSource, soundAssets.jumpLand);
-                // audioSource.clip = soundAssets.jumpLand;
-                // if(audioSource.isPlaying && audioSource.clip == soundAssets.jumpLand) break;
-                // audioSource.PlayOneShot(soundAssets.jumpLand);
                 break;
             case SFX.PlayerSFX.JUMP_LAND_BRIDGE:
                 if(audioSource.isPlaying) audioSource.Stop();
                 PlayInAudioSource(audioSource, soundAssets.jumpLandBridge);
-                // audioSource.clip = soundAssets.jumpLandBridge;
-                // if(audioSource.isPlaying && audioSource.clip == soundAssets.jumpLandBridge) break;
-                // audioSource.PlayOneShot(soundAssets.jumpLandBridge);
                 break;
             case SFX.PlayerSFX.PLAYER_DAMAGE:
                 if(audioSource.isPlaying) audioSource.Stop();
@@ -132,17 +126,6 @@ public class SoundManager : MonoBehaviour
 
 
     // NEW LEVEL LOADED IMPLEMENTATION FUNCTIONS
-
-    void OnEnable() 
-    {
-        //SceneManager.sceneLoaded += NewSceneSoundManager;
-    }
-
-    void OnDisable() 
-    {
-        //SceneManager.sceneLoaded -= NewSceneSoundManager;
-    }
-
     public void NewSceneSoundManager(Scene scene, LoadSceneMode mode)
     {
         // Finds the camera in the current scene

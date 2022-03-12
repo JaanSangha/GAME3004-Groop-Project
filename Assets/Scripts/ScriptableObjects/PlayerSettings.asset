@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83646431ec443b548a97b1e8b157cf0e, type: 3}
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
-  MusicVolume: 0.811
-  SoundVolume: 0
-  InvertXAxis: 0
+  MusicVolume: 0
+  SoundVolume: 1
   InvertYAxis: 0
-  DropdownOrientation: 0
+  InvertXAxis: 1
+  DropdownOrientation: 1
