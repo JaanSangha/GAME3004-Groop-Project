@@ -28,9 +28,9 @@ public class SceneManagement : MonoBehaviour // Singleton<SceneManagement>
         SoundManager.instance.SoundVolume = playerSettingsSO.SoundVolume;
     }
 
-    void LoadKeyMappings()
+    int LoadKeyOrientation()
     {
-
+        return playerSettingsSO.DropdownOrientation;
     }
     
     // NEW LEVEL LOADED IMPLEMENTATION FUNCTIONS
@@ -53,8 +53,8 @@ public class SceneManagement : MonoBehaviour // Singleton<SceneManagement>
         {
             Debug.Log("Game Time");
             // finding onscreen buttons here
-            LoadKeyMappings();
-            GameManager.instance.ApplyKeyMappings();
+            //LoadKeyOrientation();
+            GameManager.instance.ApplyKeyMappingPosition(LoadKeyOrientation());
         }
     }
 }

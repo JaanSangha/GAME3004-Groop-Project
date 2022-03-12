@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// JS -> Joystick, TB -> Touch Buttons
+public static class ButtonOrientation
+{
+    public const int JSLeftTBRight = 0;
+    public const int JSRightTBLeft = 1;
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -23,8 +30,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ApplyKeyMappings()
+    public void ApplyKeyMappingPosition(int buttonOrientation)
     {
+        var JSTransform = joystick.gameObject.GetComponent<RectTransform>();
+        var TBTransform = touchButtons.gameObject.GetComponent<RectTransform>();
+        
+        switch(buttonOrientation)
+        {
+            case ButtonOrientation.JSLeftTBRight:
+                JSTransform.anchoredPosition = new Vector2(-Mathf.Abs(JSTransform.anchoredPosition.x), JSTransform.anchoredPosition.y);
+                TBTransform.anchoredPosition = new Vector2(Mathf.Abs(TBTransform.anchoredPosition.x), TBTransform.anchoredPosition.y);
+                break;
+            case ButtonOrientation.JSRightTBLeft:
+                JSTransform.anchoredPosition = new Vector2(Mathf.Abs(JSTransform.anchoredPosition.x), JSTransform.anchoredPosition.y);
+                TBTransform.anchoredPosition = new Vector2(-Mathf.Abs(TBTransform.anchoredPosition.x), TBTransform.anchoredPosition.y);
+                break;
+        }
+    }
 
+    void SwapXPositions(ref Vector2 A, ref Vector2 B)
+    {
     }
 }
