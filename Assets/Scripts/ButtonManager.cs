@@ -51,6 +51,10 @@ public class ButtonManager : MonoBehaviour
     }
     public void PauseButton()
     {
-        Instantiate(PauseUIPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        if(PauseUIPrefab != null)
+        {
+            Instantiate(PauseUIPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        }
+        else Debug.Log("No pause UI");
     }
 }
