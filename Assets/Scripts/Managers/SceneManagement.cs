@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class SceneManagement : MonoBehaviour
+public class SceneManagement : Singleton<SceneManagement>
 {
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable() 
     {
-        
+        SceneManager.sceneLoaded += onNewSceneLoaded;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnDisable() 
     {
-        
+        SceneManager.sceneLoaded -= onNewSceneLoaded;
+    }
+
+    void onNewSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+
     }
 }

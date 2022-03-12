@@ -135,15 +135,15 @@ public class SoundManager : MonoBehaviour
 
     void OnEnable() 
     {
-        SceneManager.sceneLoaded += onNewSceneLoaded;
+        SceneManager.sceneLoaded += NewSceneSoundManager;
     }
 
     void OnDisable() 
     {
-        SceneManager.sceneLoaded -= onNewSceneLoaded;
+        SceneManager.sceneLoaded -= NewSceneSoundManager;
     }
 
-    void onNewSceneLoaded(Scene scene, LoadSceneMode mode)
+    void NewSceneSoundManager(Scene scene, LoadSceneMode mode)
     {
         // Finds the camera in the current scene
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
