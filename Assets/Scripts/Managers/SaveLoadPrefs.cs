@@ -1,18 +1,196 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
-public class SaveLoadPrefs : MonoBehaviour
+[System.Serializable]
+public class SaveData
 {
-    // Start is called before the first frame update
-    void Start()
+    
+    [Header("Sound Settings")]
+    public Slider soundVolSlider;
+    public string SFXVolume = "SFXVolume";
+    public Slider musicVolSlider;
+    public string MusicVolume = "MusicVolume";
+    [Header("Key Mapping Settings")]
+    public Toggle InvertYAxis;
+    public string InvertAxisY = "InvertYAxis";
+    public Toggle InvertXAxis;
+    public string InvertAxisX = "InvertXAxis";
+    public TMP_Dropdown OrientationDropDown;
+    public string DropdownOrientation = "OrientationDropDown";
+
+    public SaveData()
     {
         
     }
+}
 
-    // Update is called once per frame
-    void Update()
+public class SaveLoadPrefs : MonoBehaviour
+{
+    public SaveData savedData;
+
+    private void SaveSettings()
     {
+        PlayerPrefs.SetFloat(savedData.SFXVolume, savedData.soundVolSlider.value);
+        PlayerPrefs.SetFloat(savedData.MusicVolume, savedData.musicVolSlider.value);
+
+        PlayerPrefs.SetInt(savedData.InvertAxisX, savedData.InvertXAxis.isOn == true ? 1 : 0);
+        PlayerPrefs.SetInt(savedData.InvertAxisY, savedData.InvertYAxis.isOn == true ? 1 : 0);
+        PlayerPrefs.SetInt(savedData.DropdownOrientation, savedData.OrientationDropDown.value);
+
+        PlayerPrefs.Save();
+        Debug.Log("Game data saved!");
+    }
+
+    private void LoadSettings()
+    {
+        if (PlayerPrefs.HasKey(savedData.SFXVolume))
+        {
+            var SFXVolume = PlayerPrefs.GetFloat(savedData.SFXVolume);
+
+            savedData.soundVolSlider.value = SFXVolume;
+            Debug.Log("Game data loaded!");
+        }
+        else
+        {
+            Debug.LogError("There is no save data!");
+        }
+
+        //savedData.soundVolSlider.value = LoadFloatKey(savedData.SFXVolume);
+
+        if (PlayerPrefs.HasKey(savedData.MusicVolume))
+        {
+            var MusicVolume = PlayerPrefs.GetFloat(savedData.MusicVolume);
+
+            savedData.musicVolSlider.value = MusicVolume;
+            Debug.Log("Game data loaded!");
+        }
+        else
+        {
+            Debug.LogError("There is no save data!");
+        }
+
+        //savedData.musicVolSlider.value = LoadFloatKey(savedData.MusicVolume);
+
+        // Key Mapping Loaded
+
+        if (PlayerPrefs.HasKey(savedData.InvertAxisX))
+        {
+            bool invertX = Convert.ToBoolean(PlayerPrefs.GetInt(savedData.InvertAxisX));
+
+            savedData.InvertXAxis.isOn = invertX;
+            Debug.Log("Game data loaded!");
+        }
+        else
+        {
+            Debug.LogError("There is no save data!");
+        }
+
+        //savedData.InvertXAxis.isOn = Convert.ToBoolean(LoadIntKey(savedData.InvertAxisX));
+
+        if (PlayerPrefs.HasKey(savedData.InvertAxisY))
+        {
+            bool invertY = Convert.ToBoolean(PlayerPrefs.GetInt(savedData.InvertAxisY));
+
+            savedData.InvertYAxis.isOn = invertY;
+            Debug.Log("Game data loaded!");
+        }
+        else
+        {
+            Debug.LogError("There is no save data!");
+        }
+
+        //savedData.InvertYAxis.isOn = Convert.ToBoolean(LoadIntKey(savedData.InvertAxisY));
         
+        if (PlayerPrefs.HasKey(savedData.DropdownOrientation))
+        {
+            var orientation = PlayerPrefs.GetInt(savedData.DropdownOrientation);
+
+            savedData.OrientationDropDown.value = orientation;
+            Debug.Log("Game data loaded!");
+        }
+        else
+        {
+            Debug.LogError("There is no save data!");
+        }
+
+        //savedData.OrientationDropDown.value = LoadIntKey(savedData.DropdownOrientation);
+    }
+
+    float LoadFloatKey(string dataLoaded)
+    {
+        if (PlayerPrefs.HasKey(dataLoaded))
+        {
+            var floatValue = PlayerPrefs.GetFloat(dataLoaded);
+
+            Debug.Log("Game data loaded!");
+            return floatValue;
+        }
+        else
+        {
+            Debug.LogError("There is no save data!");
+        }
+
+        return 0;
+    }
+
+    int LoadIntKey(string dataLoaded)
+    {
+        if (PlayerPrefs.HasKey(dataLoaded))
+        {
+            var IntValue = PlayerPrefs.GetInt(dataLoaded);
+
+            Debug.Log("Game data loaded!");
+            return IntValue;
+        }
+        else
+        {
+            Debug.LogError("There is no save data!");
+        }
+
+        return 0;
+    }
+
+    string LoadStringKey(string dataLoaded)
+    {
+        if (PlayerPrefs.HasKey(dataLoaded))
+        {
+            var stringValue = PlayerPrefs.GetString(dataLoaded);
+
+            Debug.Log("Game data loaded!");
+            return stringValue;
+        }
+        else
+        {
+            Debug.LogError("There is no save data!");
+        }
+
+        return null;
+    }
+
+    // NEW LEVEL LOADED IMPLEMENTATION FUNCTIONS
+
+    void OnEnable() 
+    {
+        SceneManager.sceneLoaded += onNewSceneLoaded;
+    }
+
+    void OnDisable() 
+    {
+        SceneManager.sceneLoaded -= onNewSceneLoaded;
+    }
+
+    void OnDestroy()
+    {
+        SaveSettings();
+    }
+
+    void onNewSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        LoadSettings();
     }
 }
