@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
     float xInput;
     float zInput;
+    float xVelocity;
+    float zVelocity;
     bool isJumping;
     Vector3 playerScale;
     private float powerupTime = 0;
@@ -58,6 +60,11 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI timerText;
     public Image fadePlane;
 
+    [Header("OnScreen Controls")]
+    //public GameObject onScreenControls;
+    public Joystick leftJoystick;
+    public GameObject miniMap;
+
     public GameObject UIHeartOne;
     public GameObject UIHeartTwo;
     public GameObject UIHeartThree;
@@ -91,16 +98,16 @@ public class PlayerController : MonoBehaviour
             isJumping = false;
         }
 
-        xInput = Input.GetAxis("Horizontal");
-        zInput = Input.GetAxis("Vertical");
+        xInput = Input.GetAxis("Horizontal") + leftJoystick.Horizontal;
+        zInput = Input.GetAxis("Vertical") + leftJoystick.Vertical;
 
         playerAnimator.SetBool("IsJumping", isJumping);
 
 
         //transform.rotation = Quaternion.LookRotation(movement);
 
-        float horizontalInput = Input.GetAxis("Vertical");
-        float verticalInput = Input.GetAxis("Horizontal");
+        float horizontalInput = Input.GetAxis("Vertical") + leftJoystick.Vertical;
+        float verticalInput = Input.GetAxis("Horizontal") + leftJoystick.Horizontal;
 
 
         //face the way player moves
@@ -143,8 +150,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float xVelocity = xInput * moveSpeed;
-        float zVelocity = zInput * moveSpeed;
+        xVelocity = xInput * moveSpeed;
+        zVelocity = zInput * moveSpeed;
 
         //walk
         rigidBody.velocity = new Vector3(xVelocity, rigidBody.velocity.y, zVelocity);
@@ -387,6 +394,16 @@ public class PlayerController : MonoBehaviour
         isInvincible = true;
         powerupTime = 0;
         playerMaterial.color = new Color(0, 1, 1);
+    }
+
+    public void OnJumpPressed()
+    {
+        if (isGrounded)
+        {
+            rigidBody.velocity = new Vector3(xVelocity, Mathf.Sqrt(jumpHeight * -2.0f * gravity), zVelocity);
+            isJumping = true;
+            SoundManager.instance.PlaySound(SFX.PlayerSFX.JUMP, this.gameObject);
+        }
     }
 
     IEnumerator Fade(Color from, Color to, float time)
