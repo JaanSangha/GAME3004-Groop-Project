@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [Header("Touch Controls")]
     public Joystick joystick;
     public TouchButtonInput touchButtons;
+    [SerializeField]
+    PlayerController player;
 
     void Awake()
     {
@@ -48,7 +50,34 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void SwapXPositions(ref Vector2 A, ref Vector2 B)
+    public void GetJoystickInversions(bool invertX, bool invertY)
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        
+        if(player == null)
+        {
+            Debug.Log("Player does not exist");
+            return;
+        }
+
+        switch(invertY)
+        {
+            case true:
+                player.JSInvertY = -Mathf.Abs(player.JSInvertY);
+                break;
+            case false:
+                player.JSInvertY = Mathf.Abs(player.JSInvertY);
+                break;
+        }
+
+        switch(invertX)
+        {
+            case true:
+                player.JSInvertX = -Mathf.Abs(player.JSInvertX);
+                break;
+            case false:
+                player.JSInvertX = Mathf.Abs(player.JSInvertX);
+                break;
+        }
     }
 }

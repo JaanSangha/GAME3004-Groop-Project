@@ -32,6 +32,16 @@ public class SceneManagement : MonoBehaviour // Singleton<SceneManagement>
     {
         return playerSettingsSO.DropdownOrientation;
     }
+
+    bool LoadInvertY()
+    {
+        return playerSettingsSO.InvertYAxis;
+    }
+
+    bool LoadInvertX()
+    {
+        return playerSettingsSO.InvertXAxis;
+    }
     
     // NEW LEVEL LOADED IMPLEMENTATION FUNCTIONS
     void OnEnable() 
@@ -53,8 +63,8 @@ public class SceneManagement : MonoBehaviour // Singleton<SceneManagement>
         {
             Debug.Log("Game Time");
             // finding onscreen buttons here
-            //LoadKeyOrientation();
             GameManager.instance.ApplyKeyMappingPosition(LoadKeyOrientation());
+            GameManager.instance.GetJoystickInversions(LoadInvertX(), LoadInvertY());
         }
     }
 }

@@ -63,6 +63,8 @@ public class PlayerController : MonoBehaviour
     [Header("OnScreen Controls")]
     //public GameObject onScreenControls;
     public Joystick leftJoystick;
+    public int JSInvertX = 1;
+    public int JSInvertY = 1;
     public GameObject miniMap;
 
     public GameObject UIHeartOne;
@@ -98,20 +100,15 @@ public class PlayerController : MonoBehaviour
             isJumping = false;
         }
 
-        xInput = Input.GetAxis("Horizontal") + leftJoystick.Horizontal;
-        zInput = Input.GetAxis("Vertical") + leftJoystick.Vertical;
+        xInput = Input.GetAxis("Horizontal") + leftJoystick.Horizontal * JSInvertX;
+        zInput = Input.GetAxis("Vertical") + leftJoystick.Vertical * JSInvertY;
 
         playerAnimator.SetBool("IsJumping", isJumping);
 
-
         //transform.rotation = Quaternion.LookRotation(movement);
 
-        float horizontalInput = Input.GetAxis("Vertical") + leftJoystick.Vertical;
-        float verticalInput = Input.GetAxis("Horizontal") + leftJoystick.Horizontal;
-
-
         //face the way player moves
-        Vector3 moveDirection = new Vector3(verticalInput, 0, horizontalInput);
+        Vector3 moveDirection = new Vector3(xInput, 0, zInput);
 
         if (moveDirection.sqrMagnitude > 0.001f)
         {
