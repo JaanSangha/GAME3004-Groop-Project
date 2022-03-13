@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     float zInput;
     float xVelocity;
     float zVelocity;
-    bool isJumping;
+    public bool isJumping, isDamaging = false;
     Vector3 playerScale;
     private float powerupTime = 0;
     private float maxPowerupTime = 5;
@@ -243,7 +243,7 @@ public class PlayerController : MonoBehaviour
         }
         if (!isInvincible)
         {
-            if (other.gameObject.tag == "Enemy") //same behaviour as obsticle
+            if (other.gameObject.tag == "Enemy" && !isDamaging) //same behaviour as obsticle
             {
                 SoundManager.instance.PlaySound(SFX.PlayerSFX.PLAYER_DAMAGE, this.gameObject);
 

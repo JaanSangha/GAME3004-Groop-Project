@@ -21538,6 +21538,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1505807253054778517, guid: 50264eb6ebf10c148a0b2877a35be0c5,
+        type: 3}
+      propertyPath: m_TagString
+      value: FootCollider
+      objectReference: {fileID: 0}
     - target: {fileID: 3898450908771753267, guid: 50264eb6ebf10c148a0b2877a35be0c5,
         type: 3}
       propertyPath: m_RootOrder

@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemyManager : MonoBehaviour
 {
     public Transform player;
+    public PlayerController playerController;
     private NavMeshAgent agent;
     [SerializeField]
     private float EnemySightRange = 10;
@@ -16,6 +17,7 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerController = FindObjectOfType<PlayerController>();
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
@@ -72,5 +74,19 @@ public class EnemyManager : MonoBehaviour
     //    yield return new WaitForSeconds(2.0f);
     //}
 
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("FootCollider") && playerController.isJumping)
+        {
+            playerController.isDamaging = true;
+            this.enabled = false;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("FootCollider") )
+        {
+            playerController.isDamaging = false;
+        }
+    }
 }

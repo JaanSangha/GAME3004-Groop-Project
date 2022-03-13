@@ -18,6 +18,7 @@ TagManager:
   - BusSoundCol
   - CheckPointOne
   - CheckPointTwo
+  - FootCollider
   layers:
   - Default
   - TransparentFX
