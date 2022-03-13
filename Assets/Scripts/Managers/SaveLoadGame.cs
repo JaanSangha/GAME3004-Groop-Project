@@ -35,6 +35,11 @@ public class SaveLoadGame : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
+        GetAllRigidBodyObjects();
+    }
+
+    void GetAllRigidBodyObjects()
+    {
         // Gets rigidbodies of all gameObjects in the scene
         Rigidbody[] allRb = GameObject.FindObjectsOfType<Rigidbody>(true);
 
@@ -46,9 +51,13 @@ public class SaveLoadGame : MonoBehaviour
 
     void SaveGame()
     {
+        GetAllRigidBodyObjects();
         // Binary formatter method of saving player position
-        BinaryFormatter bf = new BinaryFormatter(); 
+        BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/MySaveData.dat"); 
+        
+        // sample method saves only player transform to file
+        
         SaveGameData data = new SaveGameData();
         data.PlayerPosition[SaveDataIndex.X] = player.position.x;
         data.PlayerPosition[SaveDataIndex.Y] = player.position.y;
@@ -57,8 +66,11 @@ public class SaveLoadGame : MonoBehaviour
         data.PlayerRotation[SaveDataIndex.X] = player.localEulerAngles.x;
         data.PlayerRotation[SaveDataIndex.Y] = player.localEulerAngles.y;
         data.PlayerRotation[SaveDataIndex.Z] = player.localEulerAngles.z;
+        bf.Serialize(file, data);
 
-        List<SaveGameData> datas = new List<SaveGameData>();
+        // sample method saves transform of multiple objects in scene (WIP)
+        
+        /* List<SaveGameData> datas = new List<SaveGameData>();
         foreach(Transform tr in allTransforms)
         {
             var newData = new SaveGameData();
@@ -72,19 +84,25 @@ public class SaveLoadGame : MonoBehaviour
 
             datas.Add(newData);
         }
-        bf.Serialize(file, datas);
-        //bf.Serialize(file, data);
+        bf.Serialize(file, datas); */
+
+
         file.Close();
         Debug.Log("Game data saved!");
     }
 
     private void LoadGame()
     {
+        GetAllRigidBodyObjects();
+
         // Binary Method of loading player position
         if (File.Exists(Application.persistentDataPath + "/MySaveData.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/MySaveData.dat", FileMode.Open);
+            
+            // sample method loads only player transform from file
+            
             SaveGameData data = (SaveGameData) bf.Deserialize(file);
             file.Close();
             var x = data.PlayerPosition[SaveDataIndex.X];
@@ -95,10 +113,27 @@ public class SaveLoadGame : MonoBehaviour
             var rotY = data.PlayerRotation[SaveDataIndex.Y];
             var rotZ = data.PlayerRotation[SaveDataIndex.Z];
 
-            player.gameObject.GetComponent<CharacterController>().enabled = false;
             player.position = new Vector3(x, y, z);
             player.rotation = Quaternion.Euler(rotX, rotY, rotZ);
-            player.gameObject.GetComponent<CharacterController>().enabled = true;
+
+
+            // sample method loads transform of multiple objects in scene (WIP)
+            
+            /* List<SaveGameData> datas = (List<SaveGameData>) bf.Deserialize(file);
+            file.Close();
+            foreach(SaveGameData newData in datas)
+            {
+                float x = newData.PlayerPosition[SaveDataIndex.X];
+                var y = newData.PlayerPosition[SaveDataIndex.Y];
+                var z = newData.PlayerPosition[SaveDataIndex.Z];
+
+                var rotX = newData.PlayerRotation[SaveDataIndex.X];
+                var rotY = newData.PlayerRotation[SaveDataIndex.Y];
+                var rotZ = newData.PlayerRotation[SaveDataIndex.Z];
+
+                player.position = new Vector3(x, y, z);
+                player.rotation = Quaternion.Euler(rotX, rotY, rotZ);
+            } */
 
             Debug.Log("Game data loaded!");
         }

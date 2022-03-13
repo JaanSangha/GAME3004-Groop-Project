@@ -76,12 +76,13 @@ public class PauseMenu : MonoBehaviour
     {
         StartCoroutine(SavingText());
         SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
-       
+        GameManager.instance.saveLoad.OnSaveButton_Pressed();
     }
 
     void onLoadButton()
     {
         SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
+        GameManager.instance.saveLoad.OnLoadButton_Pressed();
     }
 
     public void onOptionsButton()

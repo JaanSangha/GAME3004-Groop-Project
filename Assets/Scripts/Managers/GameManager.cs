@@ -12,6 +12,7 @@ public static class ButtonOrientation
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public SaveLoadGame saveLoad;
 
     [Header("Touch Controls")]
     public Joystick joystick;
@@ -29,6 +30,8 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+
+        saveLoad = GetComponent<SaveLoadGame>();
     }
 
     public void ApplyKeyMappingPosition(int buttonOrientation)
