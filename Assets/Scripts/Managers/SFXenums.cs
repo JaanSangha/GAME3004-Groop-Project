@@ -13,7 +13,8 @@ public static class SFX
         JUMP_LAND_BRIDGE,
         PLAYER_DAMAGE,
         PICKUP,
-        BUS
+        BUS,
+        CHECKPOINT
     }
 
     public enum UI_SFX
@@ -31,6 +32,7 @@ public struct SoundAssets
     public AudioClip walkingStep, walkingStepBridge;
     public AudioClip Pickup;
     public AudioClip BusSounds;
+    public AudioClip Checkpoint;
     [Header("UI SFX")]
     public AudioClip UIButtonClick;
 }

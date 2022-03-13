@@ -219,8 +219,10 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == "CheckPointOne")
         {
+
             if (!checkpointOneReached)
             {
+                SoundManager.instance.PlaySound(SFX.PlayerSFX.CHECKPOINT, this.gameObject);
                 SpawnPoint = other.transform;
                 CheckpointOneParticles.Play();
                 CheckpointTwoParticles.Play();
@@ -229,8 +231,10 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == "CheckPointTwo")
         {
+
             if (!checkpointTwoReached)
             {
+                SoundManager.instance.PlaySound(SFX.PlayerSFX.CHECKPOINT, this.gameObject);
                 SpawnPoint = other.transform;
                 CheckpointOneParticles.Play();
                 CheckpointTwoParticles.Play();

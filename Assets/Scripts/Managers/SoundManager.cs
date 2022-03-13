@@ -108,6 +108,10 @@ public class SoundManager : MonoBehaviour
                 if (audioSource.isPlaying) audioSource.Stop();
                 PlayInAudioSource(audioSource, soundAssets.BusSounds);
                 break;
+            case SFX.PlayerSFX.CHECKPOINT:
+                if (audioSource.isPlaying) audioSource.Stop();
+                PlayInAudioSource(audioSource, soundAssets.Checkpoint);
+                break;
         }
     }
 
