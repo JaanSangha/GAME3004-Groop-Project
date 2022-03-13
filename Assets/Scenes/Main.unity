@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.34191585, g: 0.43341523, b: 0.5759134, a: 1}
+  m_IndirectSpecularColor: {r: 0.34177816, g: 0.43336973, b: 0.5772419, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21538,11 +21538,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1505807253054778517, guid: 50264eb6ebf10c148a0b2877a35be0c5,
-        type: 3}
-      propertyPath: m_TagString
-      value: FootCollider
-      objectReference: {fileID: 0}
     - target: {fileID: 3898450908771753267, guid: 50264eb6ebf10c148a0b2877a35be0c5,
         type: 3}
       propertyPath: m_RootOrder
@@ -21692,6 +21687,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 802113575}
     m_Modifications:
+    - target: {fileID: 8377076861590792867, guid: e9ae69d862033b94fa4b9e7e64fbf982,
+        type: 3}
+      propertyPath: m_text
+      value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377076861590792867, guid: e9ae69d862033b94fa4b9e7e64fbf982,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377076861590792867, guid: e9ae69d862033b94fa4b9e7e64fbf982,
+        type: 3}
+      propertyPath: m_fontSizeMax
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8377076862857616074, guid: e9ae69d862033b94fa4b9e7e64fbf982,
         type: 3}
       propertyPath: m_Pivot.x
@@ -21801,6 +21811,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OnScreenButtons
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377076863008210184, guid: e9ae69d862033b94fa4b9e7e64fbf982,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377076863008210184, guid: e9ae69d862033b94fa4b9e7e64fbf982,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377076863008210184, guid: e9ae69d862033b94fa4b9e7e64fbf982,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3937203024024712825}
+    - target: {fileID: 8377076863008210184, guid: e9ae69d862033b94fa4b9e7e64fbf982,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377076863008210184, guid: e9ae69d862033b94fa4b9e7e64fbf982,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnMapButtonPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377076863008210184, guid: e9ae69d862033b94fa4b9e7e64fbf982,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377076863008210184, guid: e9ae69d862033b94fa4b9e7e64fbf982,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8377076863013651482, guid: e9ae69d862033b94fa4b9e7e64fbf982,
         type: 3}

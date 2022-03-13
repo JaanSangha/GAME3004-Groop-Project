@@ -241,9 +241,9 @@ public class PlayerController : MonoBehaviour
                 checkpointTwoReached = true;
             }
         }
-        if (!isInvincible)
+        if (!isInvincible && isGrounded)
         {
-            if (other.gameObject.tag == "Enemy" && !isDamaging) //same behaviour as obsticle
+            if (other.gameObject.tag == "Enemy") //same behaviour as obsticle
             {
                 SoundManager.instance.PlaySound(SFX.PlayerSFX.PLAYER_DAMAGE, this.gameObject);
 
@@ -406,6 +406,11 @@ public class PlayerController : MonoBehaviour
             isJumping = true;
             SoundManager.instance.PlaySound(SFX.PlayerSFX.JUMP, this.gameObject);
         }
+    }
+
+    public void OnMapButtonPressed()
+    {
+        miniMap.SetActive(!miniMap.activeInHierarchy);
     }
 
     IEnumerator Fade(Color from, Color to, float time)

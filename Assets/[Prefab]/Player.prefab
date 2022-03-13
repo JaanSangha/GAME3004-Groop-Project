@@ -365,9 +365,10 @@ GameObject:
   - component: {fileID: 8135670613151110493}
   - component: {fileID: 6596177379676877160}
   - component: {fileID: 6946378426114118241}
+  - component: {fileID: 2139310415}
   m_Layer: 0
   m_Name: FootCollider
-  m_TagString: Untagged
+  m_TagString: FootCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -395,11 +396,11 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505807253054778517}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.49004263
-  m_Center: {x: 0, y: -0.009957373, z: 0}
+  m_Radius: 0.3756016
+  m_Center: {x: 0, y: 0.18929368, z: 0.018681705}
 --- !u!54 &6946378426114118241
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -416,6 +417,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2139310415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505807253054778517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93bdb78b0ef29241921f2888c3e10bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1555096201730461459
 GameObject:
   m_ObjectHideFlags: 0
