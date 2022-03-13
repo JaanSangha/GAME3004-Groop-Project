@@ -175,6 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3007854146368706426}
+  - component: {fileID: 8044261405827949809}
   m_Layer: 0
   m_Name: trainers1
   m_TagString: Untagged
@@ -202,6 +203,19 @@ Transform:
   m_Father: {fileID: 3840996181237291276}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8044261405827949809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2519161203336302016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b44704b2587d454fa12de1effc783b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FullRotation: 1
 --- !u!1 &3384369259351845116
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +320,6 @@ GameObject:
   - component: {fileID: 3840996181237291276}
   - component: {fileID: 3840996181237291279}
   - component: {fileID: 3840996181237291278}
-  - component: {fileID: 3391638824779582635}
   - component: {fileID: 9190413670175984903}
   m_Layer: 0
   m_Name: Item1
@@ -382,18 +395,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3391638824779582635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3840996181237291275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b44704b2587d454fa12de1effc783b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &9190413670175984903
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -92,6 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1258478958091130576}
+  - component: {fileID: 2659105575714134065}
   m_Layer: 0
   m_Name: 12190_Heart_v1_L3
   m_TagString: Untagged
@@ -115,6 +116,19 @@ Transform:
   m_Father: {fileID: 8372510780794612780}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &2659105575714134065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890618341264133226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b44704b2587d454fa12de1effc783b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FullRotation: 0
 --- !u!1 &2613678056874050849
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +225,6 @@ GameObject:
   - component: {fileID: 8372510780794612769}
   - component: {fileID: 8372510780794612770}
   - component: {fileID: 8372510780794612771}
-  - component: {fileID: 8371144841603182025}
   m_Layer: 0
   m_Name: Item3
   m_TagString: item3
@@ -299,16 +312,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2346115, y: 1.1474428, z: 0.60573244}
   m_Center: {x: 0.002544403, y: 0.0010885, z: 0.0049881935}
---- !u!114 &8371144841603182025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8372510780794612781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b44704b2587d454fa12de1effc783b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FullRotation: 0
