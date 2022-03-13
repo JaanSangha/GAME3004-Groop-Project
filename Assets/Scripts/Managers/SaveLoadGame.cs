@@ -10,23 +10,35 @@ public static class SaveDataIndex
     public const int X = 0;
     public const int Y = 1;
     public const int Z = 2;
+    public const int Health = 3;
+    public const int Time = 4;
+    public const int Score = 5;
 }
+
 
 [System.Serializable]
 class SaveGameData
 {
     public float[] PlayerPosition;
     public float[] PlayerRotation;
+    public int[] PlayerHealth;
+    public float[] PlayerTime;
+    public int[] PlayerScore;
 
     public SaveGameData() // Note: Cannot dynamically instantiate struct variables here unlike a class
     {
         PlayerPosition = new float[3]; // create empty container
         PlayerRotation = new float[3]; // create empty container
+        PlayerHealth = new int[4]; // create empty container
+        PlayerTime = new float[5]; // create empty container
+        PlayerScore = new int[6]; // create empty container
     }
 }
 
 public class SaveLoadGame : MonoBehaviour
 {
+    public PlayerController playerController;
+
     public Transform player;
     [SerializeField]
     List<Transform> allTransforms;
@@ -34,7 +46,7 @@ public class SaveLoadGame : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         GetAllRigidBodyObjects();
     }
 
@@ -66,6 +78,10 @@ public class SaveLoadGame : MonoBehaviour
         data.PlayerRotation[SaveDataIndex.X] = player.localEulerAngles.x;
         data.PlayerRotation[SaveDataIndex.Y] = player.localEulerAngles.y;
         data.PlayerRotation[SaveDataIndex.Z] = player.localEulerAngles.z;
+
+        data.PlayerHealth[SaveDataIndex.Health] = playerController.Lives;
+        data.PlayerTime[SaveDataIndex.Time] = playerController.timeLeft;
+        data.PlayerScore[SaveDataIndex.Score] = playerController.Score;
         bf.Serialize(file, data);
 
         // sample method saves transform of multiple objects in scene (WIP)
@@ -113,6 +129,13 @@ public class SaveLoadGame : MonoBehaviour
             var rotY = data.PlayerRotation[SaveDataIndex.Y];
             var rotZ = data.PlayerRotation[SaveDataIndex.Z];
 
+            var lives = data.PlayerHealth[SaveDataIndex.Health];
+            var times = data.PlayerTime[SaveDataIndex.Time];
+            var scores = data.PlayerScore[SaveDataIndex.Score];
+
+            playerController.timeLeft = times;
+            playerController.Lives = lives;
+            playerController.Score = scores;
             player.position = new Vector3(x, y, z);
             player.rotation = Quaternion.Euler(rotX, rotY, rotZ);
 

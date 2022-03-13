@@ -305,19 +305,18 @@ public class PlayerController : MonoBehaviour
             UIHeartTwo.SetActive(true);
             UIHeartThree.SetActive(true);
         }
-        else if(Lives == 2)
+        if(Lives == 2)
         {
             UIHeartOne.SetActive(true);
             UIHeartTwo.SetActive(true);
             UIHeartThree.SetActive(false);
         }
-        else if (Lives == 1)
+        if (Lives == 1)
         {
             UIHeartOne.SetActive(true);
             UIHeartTwo.SetActive(false);
             UIHeartThree.SetActive(false);
         }
-
         if (Lives < 1)
         {
             UIHeartOne.SetActive(false);
