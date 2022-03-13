@@ -25,7 +25,7 @@ public class RotatingPickup : MonoBehaviour
         }
         else
         {
-            transform.Rotate(new Vector3(0, Time.deltaTime * 200, 0));
+            transform.Rotate(new Vector3(0, 0, Time.deltaTime * 200));
         }
 
         if (transform.position.y >= maxY)
