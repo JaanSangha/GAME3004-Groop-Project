@@ -10,28 +10,22 @@ public static class SaveDataIndex
     public const int X = 0;
     public const int Y = 1;
     public const int Z = 2;
-    public const int Health = 3;
-    public const int Time = 4;
-    public const int Score = 5;
 }
 
 
 [System.Serializable]
-class SaveGameData
+class PlayerSaveData
 {
     public float[] PlayerPosition;
     public float[] PlayerRotation;
-    public int[] PlayerHealth;
-    public float[] PlayerTime;
-    public int[] PlayerScore;
+    public int PlayerHealth;
+    public float PlayerTime;
+    public int PlayerScore;
 
-    public SaveGameData() // Note: Cannot dynamically instantiate struct variables here unlike a class
+    public PlayerSaveData() // Note: Cannot dynamically instantiate struct variables here unlike a class
     {
         PlayerPosition = new float[3]; // create empty container
         PlayerRotation = new float[3]; // create empty container
-        PlayerHealth = new int[4]; // create empty container
-        PlayerTime = new float[5]; // create empty container
-        PlayerScore = new int[6]; // create empty container
     }
 }
 
@@ -47,7 +41,7 @@ public class SaveLoadGame : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        GetAllRigidBodyObjects();
+        //GetAllRigidBodyObjects();
     }
 
     void GetAllRigidBodyObjects()
@@ -61,16 +55,15 @@ public class SaveLoadGame : MonoBehaviour
         }
     }
 
-    void SaveGame()
+    void SavePlayerData()
     {
-        GetAllRigidBodyObjects();
         // Binary formatter method of saving player position
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/MySaveData.dat"); 
         
         // sample method saves only player transform to file
         
-        SaveGameData data = new SaveGameData();
+        PlayerSaveData data = new PlayerSaveData();
         data.PlayerPosition[SaveDataIndex.X] = player.position.x;
         data.PlayerPosition[SaveDataIndex.Y] = player.position.y;
         data.PlayerPosition[SaveDataIndex.Z] = player.position.z;
@@ -79,38 +72,17 @@ public class SaveLoadGame : MonoBehaviour
         data.PlayerRotation[SaveDataIndex.Y] = player.localEulerAngles.y;
         data.PlayerRotation[SaveDataIndex.Z] = player.localEulerAngles.z;
 
-        data.PlayerHealth[SaveDataIndex.Health] = playerController.Lives;
-        data.PlayerTime[SaveDataIndex.Time] = playerController.timeLeft;
-        data.PlayerScore[SaveDataIndex.Score] = playerController.Score;
+        data.PlayerHealth = playerController.Lives;
+        data.PlayerTime = playerController.timeLeft;
+        data.PlayerScore = playerController.Score;
         bf.Serialize(file, data);
-
-        // sample method saves transform of multiple objects in scene (WIP)
-        
-        /* List<SaveGameData> datas = new List<SaveGameData>();
-        foreach(Transform tr in allTransforms)
-        {
-            var newData = new SaveGameData();
-            newData.PlayerPosition[SaveDataIndex.X] = tr.position.x;
-            newData.PlayerPosition[SaveDataIndex.Y] = tr.position.y;
-            newData.PlayerPosition[SaveDataIndex.Z] = tr.position.z;
-
-            newData.PlayerRotation[SaveDataIndex.X] = tr.localEulerAngles.x;
-            newData.PlayerRotation[SaveDataIndex.Y] = tr.localEulerAngles.y;
-            newData.PlayerRotation[SaveDataIndex.Z] = tr.localEulerAngles.z;
-
-            datas.Add(newData);
-        }
-        bf.Serialize(file, datas); */
-
 
         file.Close();
         Debug.Log("Game data saved!");
     }
 
-    private void LoadGame()
+    private void LoadPlayerData()
     {
-        GetAllRigidBodyObjects();
-
         // Binary Method of loading player position
         if (File.Exists(Application.persistentDataPath + "/MySaveData.dat"))
         {
@@ -119,7 +91,7 @@ public class SaveLoadGame : MonoBehaviour
             
             // sample method loads only player transform from file
             
-            SaveGameData data = (SaveGameData) bf.Deserialize(file);
+            PlayerSaveData data = (PlayerSaveData) bf.Deserialize(file);
             file.Close();
             var x = data.PlayerPosition[SaveDataIndex.X];
             var y = data.PlayerPosition[SaveDataIndex.Y];
@@ -129,34 +101,16 @@ public class SaveLoadGame : MonoBehaviour
             var rotY = data.PlayerRotation[SaveDataIndex.Y];
             var rotZ = data.PlayerRotation[SaveDataIndex.Z];
 
-            var lives = data.PlayerHealth[SaveDataIndex.Health];
-            var times = data.PlayerTime[SaveDataIndex.Time];
-            var scores = data.PlayerScore[SaveDataIndex.Score];
+            var lives = data.PlayerHealth;
+            var times = data.PlayerTime;
+            var scores = data.PlayerScore;
 
             playerController.timeLeft = times;
             playerController.Lives = lives;
+            playerController.SetLivesUI();
             playerController.Score = scores;
             player.position = new Vector3(x, y, z);
             player.rotation = Quaternion.Euler(rotX, rotY, rotZ);
-
-
-            // sample method loads transform of multiple objects in scene (WIP)
-            
-            /* List<SaveGameData> datas = (List<SaveGameData>) bf.Deserialize(file);
-            file.Close();
-            foreach(SaveGameData newData in datas)
-            {
-                float x = newData.PlayerPosition[SaveDataIndex.X];
-                var y = newData.PlayerPosition[SaveDataIndex.Y];
-                var z = newData.PlayerPosition[SaveDataIndex.Z];
-
-                var rotX = newData.PlayerRotation[SaveDataIndex.X];
-                var rotY = newData.PlayerRotation[SaveDataIndex.Y];
-                var rotZ = newData.PlayerRotation[SaveDataIndex.Z];
-
-                player.position = new Vector3(x, y, z);
-                player.rotation = Quaternion.Euler(rotX, rotY, rotZ);
-            } */
 
             Debug.Log("Game data loaded!");
         }
@@ -182,11 +136,57 @@ public class SaveLoadGame : MonoBehaviour
 
     public void OnSaveButton_Pressed()
     {
-        SaveGame();
+        SavePlayerData();
     }
 
     public void OnLoadButton_Pressed()
     {
-        LoadGame();
+        LoadPlayerData();
+    }
+
+    void SaveGame()
+    {
+        //GetAllRigidBodyObjects();
+
+        // sample method saves transform of multiple objects in scene (WIP)
+        
+        /* List<SaveGameData> datas = new List<SaveGameData>();
+        foreach(Transform tr in allTransforms)
+        {
+            var newData = new SaveGameData();
+            newData.PlayerPosition[SaveDataIndex.X] = tr.position.x;
+            newData.PlayerPosition[SaveDataIndex.Y] = tr.position.y;
+            newData.PlayerPosition[SaveDataIndex.Z] = tr.position.z;
+
+            newData.PlayerRotation[SaveDataIndex.X] = tr.localEulerAngles.x;
+            newData.PlayerRotation[SaveDataIndex.Y] = tr.localEulerAngles.y;
+            newData.PlayerRotation[SaveDataIndex.Z] = tr.localEulerAngles.z;
+
+            datas.Add(newData);
+        }
+        bf.Serialize(file, datas); */
+    }
+
+    void LoadGame()
+    {
+        //GetAllRigidBodyObjects();
+
+        // sample method loads transform of multiple objects in scene (WIP)
+            
+            /* List<SaveGameData> datas = (List<SaveGameData>) bf.Deserialize(file);
+            file.Close();
+            foreach(SaveGameData newData in datas)
+            {
+                float x = newData.PlayerPosition[SaveDataIndex.X];
+                var y = newData.PlayerPosition[SaveDataIndex.Y];
+                var z = newData.PlayerPosition[SaveDataIndex.Z];
+
+                var rotX = newData.PlayerRotation[SaveDataIndex.X];
+                var rotY = newData.PlayerRotation[SaveDataIndex.Y];
+                var rotZ = newData.PlayerRotation[SaveDataIndex.Z];
+
+                player.position = new Vector3(x, y, z);
+                player.rotation = Quaternion.Euler(rotX, rotY, rotZ);
+            } */
     }
 }

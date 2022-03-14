@@ -299,6 +299,30 @@ public class PlayerController : MonoBehaviour
             LoseLife();
         }
     }
+
+    // allows the save load to reset the health UI
+    public void SetLivesUI()
+    {
+        switch(Lives)
+        {
+            case 3:
+                UIHeartOne.SetActive(true);
+                UIHeartTwo.SetActive(true);
+                UIHeartThree.SetActive(true);
+                break;
+            case 2:
+                UIHeartOne.SetActive(true);
+                UIHeartTwo.SetActive(true);
+                UIHeartThree.SetActive(false);
+                break;
+            case 1:
+                UIHeartOne.SetActive(true);
+                UIHeartTwo.SetActive(false);
+                UIHeartThree.SetActive(false);
+                break;
+        }
+    }
+
     void LoseLife()
     {
         Lives--;
