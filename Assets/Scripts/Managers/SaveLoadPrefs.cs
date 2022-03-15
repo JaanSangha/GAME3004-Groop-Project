@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -14,6 +15,8 @@ public struct SaveData
     public Toggle InvertYAxis;
     public Toggle InvertXAxis;
     public TMP_Dropdown DropdownOrientation;
+    [Header("Non-Saved UI")]
+    public Button backButton;
 }
 
 public class SaveLoadPrefs : MonoBehaviour
@@ -23,7 +26,22 @@ public class SaveLoadPrefs : MonoBehaviour
 
     void Start()
     {
+        
+    }
+
+    void goBackToMainMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
+    void OnEnable()
+    {
         LoadSettingsUI();
+        if(UIDisplay.backButton.onClick.GetPersistentEventCount() < 1)
+        {
+            Debug.Log("Empty Button");
+            UIDisplay.backButton.onClick.AddListener(goBackToMainMenu);
+        }
     }
 
     private void SaveSettings()
@@ -34,7 +52,7 @@ public class SaveLoadPrefs : MonoBehaviour
         playerSettingsSO.InvertXAxis = UIDisplay.InvertXAxis.isOn;
         playerSettingsSO.InvertYAxis = UIDisplay.InvertYAxis.isOn;
         playerSettingsSO.DropdownOrientation = UIDisplay.DropdownOrientation.value;
-        Debug.Log("Game data saved!");
+        Debug.Log("Setting data saved!");
     }
 
     private void LoadSettingsUI()
@@ -45,9 +63,10 @@ public class SaveLoadPrefs : MonoBehaviour
         UIDisplay.InvertXAxis.isOn = playerSettingsSO.InvertXAxis;
         UIDisplay.InvertYAxis.isOn = playerSettingsSO.InvertYAxis;
         UIDisplay.DropdownOrientation.value = playerSettingsSO.DropdownOrientation;
+        Debug.Log("Setting data loaded!");
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
         SaveSettings();
     }

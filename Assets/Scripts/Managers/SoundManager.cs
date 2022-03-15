@@ -130,7 +130,7 @@ public class SoundManager : MonoBehaviour
 
 
     // NEW LEVEL LOADED IMPLEMENTATION FUNCTIONS
-    public void NewSceneSoundManager()
+    public void ApplySoundToWidgets()
     {
         // Finds the camera in the current scene
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -158,6 +158,8 @@ public class SoundManager : MonoBehaviour
 
         foreach(Button b in gameObjButtons)
         {
+            //if(b.onClick.GetPersistentEventCount() > 0) break;
+
             b.onClick.AddListener(
                 delegate
                 {

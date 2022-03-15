@@ -4,22 +4,35 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public struct MainPauseButtons
+{
+    [Header("Main Pause Buttons")]
+    public GameObject resumeButton;
+    public GameObject saveButton;
+    public GameObject loadButton;
+    public GameObject optionsButton;
+    public GameObject quitButton;
+}
+
 public class PauseMenu : MonoBehaviour
 {
     static PauseMenu singleInstance;
-
-    GameObject resumeButton, saveButton;
-    GameObject loadButton, optionsButton, quitButton;
+    public GameObject mainUI;
+    public GameObject optionsUI;
+    public SaveLoadPrefs UIDisplaySaved;
+    public GameObject savingText;
+    [SerializeField]
+    MainPauseButtons widgets;
 
     GameObject parent;
 
-    public GameObject savingtext;
 
     void Awake() 
     {
         Time.timeScale = 0;
 
-        parent = transform.parent.gameObject;
+        parent = gameObject.GetComponentInParent<Canvas>().gameObject;
 
         if(singleInstance != null)
         {
@@ -33,7 +46,7 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
-        Button[] allChildren = GetComponentsInChildren<Button>();
+        /* Button[] allChildren = GetComponentsInChildren<Button>();
         foreach(Button b in allChildren)
         {
             if(b.gameObject.name == "ResumeButton")
@@ -56,13 +69,25 @@ public class PauseMenu : MonoBehaviour
             {
                 quitButton = b.gameObject;
             }
-        }
+        } */
 
-        resumeButton.GetComponent<Button>().onClick.AddListener(onResumeButton);
-        saveButton.GetComponent<Button>().onClick.AddListener(onSaveButton);
-        loadButton.GetComponent<Button>().onClick.AddListener(onLoadButton);
-        //optionsButton.GetComponent<Button>().onClick.AddListener(onOptionsButton);
-        quitButton.GetComponent<Button>().onClick.AddListener(onQuitButton);
+        widgets.resumeButton.GetComponent<Button>().onClick.AddListener(onResumeButton);
+        widgets.saveButton.GetComponent<Button>().onClick.AddListener(onSaveButton);
+        widgets.loadButton.GetComponent<Button>().onClick.AddListener(onLoadButton);
+        widgets.optionsButton.GetComponent<Button>().onClick.AddListener(onOptionsButton);
+        widgets.quitButton.GetComponent<Button>().onClick.AddListener(onQuitButton);
+
+        UIDisplaySaved = optionsUI.GetComponent<SaveLoadPrefs>();
+
+        if(UIDisplaySaved.UIDisplay.backButton.onClick.GetPersistentEventCount() > 0)
+        {
+            UIDisplaySaved.UIDisplay.backButton.onClick.RemoveAllListeners();
+            UIDisplaySaved.UIDisplay.backButton.onClick.AddListener(onOptionsBackButton);
+        }
+        mainUI.SetActive(true);
+        optionsUI.SetActive(false);
+
+        SoundManager.instance.ApplySoundToWidgets();
     }
 
     void onResumeButton()
@@ -88,7 +113,15 @@ public class PauseMenu : MonoBehaviour
     public void onOptionsButton()
     {
         SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
-        SceneManager.LoadScene("Options");
+        mainUI.SetActive(false);
+        optionsUI.SetActive(true);
+    }
+
+    public void onOptionsBackButton()
+    {
+        SoundManager.instance.PlayMenuSound(SFX.UI_SFX.BUTTON_CLICK);
+        mainUI.SetActive(true);
+        optionsUI.SetActive(false);
     }
 
     public void onQuitButton()
@@ -105,9 +138,9 @@ public class PauseMenu : MonoBehaviour
     IEnumerator SavingText()
     {
         Debug.Log("Saving");
-        savingtext.SetActive(true);
+        savingText.SetActive(true);
         yield return new WaitForSeconds(1);
-        savingtext.SetActive(false);
+        savingText.SetActive(false);
     }
 
 }

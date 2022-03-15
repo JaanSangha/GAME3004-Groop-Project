@@ -27,7 +27,7 @@ public class EnemyManager : MonoBehaviour
     {
         SwitchStates();
         float dist = Vector3.Distance(player.position, agent.transform.position);
-        print("Distance to Player: " + dist);
+        //Debug.Log("Distance to Player: " + dist);
         if (dist < EnemySightRange)
         {
             EnemyState = EnemyBehaviour.CHASE;

@@ -56,8 +56,9 @@ public class SceneManagement : MonoBehaviour // Singleton<SceneManagement>
 
     void onNewSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("Load Scene");
         LoadSoundSettings();
-        SoundManager.instance.NewSceneSoundManager();
+        SoundManager.instance.ApplySoundToWidgets();
 
         if(scene.name != "Menu" && scene.name != "Options")
         {
