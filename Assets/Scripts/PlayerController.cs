@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
     public float groundRadius = 0.4f;
     public LayerMask groundMask;
     public bool isGrounded;
+    [SerializeField]
+    public float GoombaShrinkingRatio;
 
     [Header("Text UI")]
     public GameObject GameOverScreen;
@@ -259,6 +261,29 @@ public class PlayerController : MonoBehaviour
                 Health -= 10;
 
                 LoseLife();
+
+                Destroy(other.gameObject);
+            }
+        }
+        if (!isInvincible && !isGrounded)
+        {
+            if (other.gameObject.tag == "Enemy") //same behaviour as obsticle
+            {
+                //SoundManager.instance.PlaySound(SFX.PlayerSFX.PLAYER_DAMAGE, this.gameObject);
+
+                //Debug.Log("Ouch");//for checking collision with hazard
+
+                ////gives some knockback to player when colliding with hazard
+                //Vector3 pushDirection = other.transform.position - transform.position;
+
+                //pushDirection = -pushDirection.normalized;
+
+                //GetComponent<Rigidbody>().AddForce(pushDirection * force * 10);
+
+                //Health -= 10;
+
+                //LoseLife();
+                other.transform.localScale *= GoombaShrinkingRatio;
 
                 Destroy(other.gameObject);
             }
