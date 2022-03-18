@@ -46,31 +46,6 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
-        /* Button[] allChildren = GetComponentsInChildren<Button>();
-        foreach(Button b in allChildren)
-        {
-            if(b.gameObject.name == "ResumeButton")
-            {
-                resumeButton = b.gameObject;
-            }
-            else if(b.gameObject.name == "SaveButton")
-            {
-                saveButton = b.gameObject;
-            }
-            else if(b.gameObject.name == "LoadButton")
-            {
-                loadButton = b.gameObject;
-            }
-            else if(b.gameObject.name == "OptionsButton")
-            {
-                optionsButton = b.gameObject;
-            }
-            else if(b.gameObject.name == "QuitButton")
-            {
-                quitButton = b.gameObject;
-            }
-        } */
-
         widgets.resumeButton.GetComponent<Button>().onClick.AddListener(onResumeButton);
         widgets.saveButton.GetComponent<Button>().onClick.AddListener(onSaveButton);
         widgets.loadButton.GetComponent<Button>().onClick.AddListener(onLoadButton);
@@ -78,12 +53,15 @@ public class PauseMenu : MonoBehaviour
         widgets.quitButton.GetComponent<Button>().onClick.AddListener(onQuitButton);
 
         UIDisplaySaved = optionsUI.GetComponent<SaveLoadPrefs>();
+        
+        // unfortunately, no way of seeing how many functions you add to button listener
+        UIDisplaySaved.UIDisplay.backButton.gameObject.SetActive(false);
+        UIDisplaySaved.UIDisplay.backToPause.gameObject.SetActive(true);
+        // key mapping options error when trying to change settings in options menu
+        UIDisplaySaved.UIDisplay.KeyMappingOptsToggle.gameObject.SetActive(false);
 
-        if(UIDisplaySaved.UIDisplay.backButton.onClick.GetPersistentEventCount() > 0)
-        {
-            UIDisplaySaved.UIDisplay.backButton.onClick.RemoveAllListeners();
-            UIDisplaySaved.UIDisplay.backButton.onClick.AddListener(onOptionsBackButton);
-        }
+        UIDisplaySaved.UIDisplay.backToPause.onClick.AddListener(onOptionsBackButton);
+        
         mainUI.SetActive(true);
         optionsUI.SetActive(false);
 

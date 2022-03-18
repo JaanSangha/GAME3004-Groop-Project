@@ -16,7 +16,9 @@ public struct SaveData
     public Toggle InvertXAxis;
     public TMP_Dropdown DropdownOrientation;
     [Header("Non-Saved UI")]
+    public Button KeyMappingOptsToggle;
     public Button backButton;
+    public Button backToPause;
 }
 
 public class SaveLoadPrefs : MonoBehaviour
@@ -24,9 +26,13 @@ public class SaveLoadPrefs : MonoBehaviour
     public Settings playerSettingsSO;
     public SaveData UIDisplay;
 
-    void Start()
+    void Awake()
     {
-        
+        // unfortunately, no way of seeing how many functions you add to button listener
+        UIDisplay.backButton.gameObject.SetActive(true);
+        UIDisplay.backToPause.gameObject.SetActive(false);
+
+        UIDisplay.backButton.onClick.AddListener(goBackToMainMenu);
     }
 
     void goBackToMainMenu()
@@ -36,6 +42,7 @@ public class SaveLoadPrefs : MonoBehaviour
 
     void OnEnable()
     {
+        Debug.Log(UIDisplay.backButton.onClick.GetPersistentEventCount());
         LoadSettingsUI();
         if(UIDisplay.backButton.onClick.GetPersistentEventCount() < 1)
         {
