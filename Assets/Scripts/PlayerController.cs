@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     [SerializeField]
     public float GoombaShrinkingRatio;
-
+    public int GoombaNum = 2;
     [Header("Text UI")]
     public GameObject GameOverScreen;
     public GameObject GameUIScreen;
@@ -269,23 +269,20 @@ public class PlayerController : MonoBehaviour
         {
             if (other.gameObject.tag == "Enemy") //same behaviour as obsticle
             {
-                //SoundManager.instance.PlaySound(SFX.PlayerSFX.PLAYER_DAMAGE, this.gameObject);
+                //for (int i = 0; i < GoombaNum; i++)
+                //{
+                    //if(i <= 1) // Some issues with this way off adding force. 
+                    //{
+                    //    Vector3 pushDirection = other.transform.position - transform.position;
 
-                //Debug.Log("Ouch");//for checking collision with hazard
+                    //    pushDirection = -pushDirection.normalized;
+                    //    this.GetComponent<Rigidbody>().AddForce(pushDirection * force * 10);
+                    //}
+                    
+                    //other.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * GoombaShrinkingRatio, transform.localScale.z);
 
-                ////gives some knockback to player when colliding with hazard
-                //Vector3 pushDirection = other.transform.position - transform.position;
-
-                //pushDirection = -pushDirection.normalized;
-
-                //GetComponent<Rigidbody>().AddForce(pushDirection * force * 10);
-
-                //Health -= 10;
-
-                //LoseLife();
-                other.transform.localScale *= GoombaShrinkingRatio;
-
-                Destroy(other.gameObject);
+                    Destroy(other.gameObject);
+                //}
             }
         }
         if (other.gameObject.tag == "BusSoundCol")
