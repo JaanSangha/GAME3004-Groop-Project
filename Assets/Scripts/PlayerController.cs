@@ -124,6 +124,11 @@ public class PlayerController : MonoBehaviour
         timeLeft -= Time.deltaTime;
         timerText.text = timeLeft.ToString("F0");
 
+        if(timeLeft <=0)
+        {
+            GameOver(true);
+        }
+
         if(isBoosted)
         {
             powerupTime += Time.deltaTime;
