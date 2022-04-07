@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField]
     private InventorySystem inventorySystem;
+    
 
     float xInput;
     float zInput;
@@ -35,6 +36,10 @@ public class PlayerController : MonoBehaviour
 
     public float force = 1;
 
+    [SerializeField]
+    public TextMeshProUGUI scoreText;
+    //[SerializeField] //might need this as well 
+    //public TextMeshProUGUI livesText;
     public int Health = 100;
     public int Lives = 3;
     public int Score = 0;
@@ -82,6 +87,8 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         playerScale = transform.localScale;
         transform.position = SpawnPoint.position;
+        Score = 0;
+        scoreText.text = "Score: " + Score;
     }
     // Start is called before the first frame update
     void Start()
@@ -248,7 +255,7 @@ public class PlayerController : MonoBehaviour
                 checkpointTwoReached = true;
             }
         }
-        if (!isInvincible && isGrounded)
+        if (!isInvincible && isGrounded) //Hitting Enemy 
         {
             if (other.gameObject.tag == "Enemy") //same behaviour as obsticle
             {
@@ -266,11 +273,13 @@ public class PlayerController : MonoBehaviour
                 Health -= 10;
 
                 LoseLife();
-
+                Score--;
+                scoreText.text = "Score: " + Score;
+                Debug.Log("Lost Score");
                 Destroy(other.gameObject);
             }
         }
-        if (!isInvincible && !isGrounded)
+        if (!isInvincible && !isGrounded) //Goomba Stomp
         {
             if (other.gameObject.tag == "Enemy") //same behaviour as obsticle
             {
@@ -286,6 +295,9 @@ public class PlayerController : MonoBehaviour
                     
                     //other.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * GoombaShrinkingRatio, transform.localScale.z);
 
+                Score++;
+                scoreText.text = "Score: " + Score;
+                Debug.Log("Gained Score");
                     Destroy(other.gameObject);
                 //}
             }
