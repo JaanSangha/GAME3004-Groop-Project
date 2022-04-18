@@ -37,7 +37,7 @@ public class SaveLoadGame : MonoBehaviour
     [SerializeField]
     List<Transform> allTransforms;
 
-    void Start()
+    void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();

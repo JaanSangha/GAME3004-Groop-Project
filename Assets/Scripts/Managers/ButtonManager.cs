@@ -23,10 +23,21 @@ public class ButtonManager : MonoBehaviour
 
     public void RestartButton()
     {
-       
         SceneManager.LoadScene("Main");
     }
 
+    public void PlayButton()
+    {
+        SceneManager.LoadScene("Main");
+    }
+    public void LoadButton()
+    {
+        SceneManagement.instance.LoadGame();
+    }
+    public void GoToOptionsButton()
+    {
+        SceneManager.LoadScene("Options");
+    }
     public void ExitButton()
     {
       
@@ -35,15 +46,6 @@ public class ButtonManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
-    }
-
-    public void GoToMainButton()
-    {
-        SceneManager.LoadScene("Main");
-    }
-    public void GoToOptionsButton()
-    {
-        SceneManager.LoadScene("Options");
     }
     public void GoToMenuButton()
     {

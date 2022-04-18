@@ -8,6 +8,8 @@ public class SceneManagement : MonoBehaviour // Singleton<SceneManagement>
     public static SceneManagement instance;
 
     public Settings playerSettingsSO;
+    bool LoadingGame;
+    
 
     void Awake()
     {
@@ -20,6 +22,12 @@ public class SceneManagement : MonoBehaviour // Singleton<SceneManagement>
             instance = this;
             DontDestroyOnLoad(this);
         }
+    }
+
+    public void LoadGame()
+    {
+        LoadingGame = true;
+        SceneManager.LoadScene("Main");
     }
 
     void LoadSoundSettings()
@@ -66,6 +74,12 @@ public class SceneManagement : MonoBehaviour // Singleton<SceneManagement>
             // finding onscreen buttons here
             GameManager.instance.ApplyKeyMappingPosition(LoadKeyOrientation());
             GameManager.instance.GetJoystickInversions(LoadInvertX(), LoadInvertY());
+
+            if(LoadingGame == true)
+            {
+                GameManager.instance.saveLoad.OnLoadButton_Pressed();
+                LoadingGame = false;
+            }
         }
     }
 }
