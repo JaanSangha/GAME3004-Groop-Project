@@ -21,11 +21,14 @@ class PlayerSaveData
     public int PlayerHealth;
     public float PlayerTime;
     public int PlayerScore;
+    public int Pickups;
+    public int[] saveInventoryNum;
 
     public PlayerSaveData() // Note: Cannot dynamically instantiate struct variables here unlike a class
     {
         PlayerPosition = new float[3]; // create empty container
         PlayerRotation = new float[3]; // create empty container
+        saveInventoryNum = new int[2];
     }
 }
 
@@ -34,6 +37,7 @@ public class SaveLoadGame : MonoBehaviour
     public PlayerController playerController;
 
     public Transform player;
+    public InventorySystem newInventory;
     [SerializeField]
     List<Transform> allTransforms;
 
@@ -41,6 +45,7 @@ public class SaveLoadGame : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        newInventory = GameObject.FindObjectOfType<InventorySystem>();
         //GetAllRigidBodyObjects();
     }
 
@@ -75,6 +80,9 @@ public class SaveLoadGame : MonoBehaviour
         data.PlayerHealth = playerController.Lives;
         data.PlayerTime = playerController.timeLeft;
         data.PlayerScore = playerController.Score;
+
+        data.saveInventoryNum[0] = newInventory.num1;
+        data.saveInventoryNum[1] = newInventory.num2;
         bf.Serialize(file, data);
 
         file.Close();
@@ -111,6 +119,9 @@ public class SaveLoadGame : MonoBehaviour
             playerController.Score = scores;
             player.position = new Vector3(x, y, z);
             player.rotation = Quaternion.Euler(rotX, rotY, rotZ);
+
+            newInventory.num1 = data.saveInventoryNum[0];
+            newInventory.num2 = data.saveInventoryNum[1];
 
             Debug.Log("Game data loaded!");
         }
