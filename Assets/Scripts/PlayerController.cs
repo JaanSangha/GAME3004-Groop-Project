@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour
     {
         RightRunningShoe.SetActive(false);
         LeftRunningShoe.SetActive(false);
+        playerMaterial.color = new Color(.7f, .8f, .8f);
     }
 
     // Update is called once per frame
@@ -284,7 +285,7 @@ public class PlayerController : MonoBehaviour
                 Health -= 10;
 
                 LoseLife();
-                Score--;
+                Score = Score -25;
                 scoreText.text = "Score: " + Score;
                 Debug.Log("Lost Score");
                 Destroy(other.gameObject);
@@ -306,7 +307,7 @@ public class PlayerController : MonoBehaviour
                     
                     //other.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * GoombaShrinkingRatio, transform.localScale.z);
 
-                Score++;
+                Score = Score + 50;
                 scoreText.text = "Score: " + Score;
                 Debug.Log("Gained Score");
                     Destroy(other.gameObject);
