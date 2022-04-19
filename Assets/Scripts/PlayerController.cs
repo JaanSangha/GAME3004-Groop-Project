@@ -27,10 +27,10 @@ public class PlayerController : MonoBehaviour
     private bool checkpointTwoReached;
     public float moveSpeed = 5.0f;
 
-    public float spriteBlinkingTimer = 0.0f;
-    public float spriteBlinkingMiniDuration = 0.1f;
-    public float spriteBlinkingTotalTimer = 0.0f;
-    public float spriteBlinkingTotalDuration = 1.0f;
+    public float deathAnimTimer = 0.0f;
+    public float deathAnimDuration = 0.1f;
+    public float deathAnimTotalTime = 0.0f;
+    public float deathAnimTotalDuration = 1.0f;
     public bool startBlinking = false;
 
     public GameObject RightRunningShoe;
@@ -166,7 +166,7 @@ public class PlayerController : MonoBehaviour
 
         if (startBlinking == true)
         {
-            StartBlinkingEffect();
+            StartBlinking();
         }
     }
 
@@ -502,29 +502,28 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    private void StartBlinkingEffect()
+    private void StartBlinking()
     {
-        spriteBlinkingTotalTimer += Time.deltaTime;
-        if (spriteBlinkingTotalTimer >= spriteBlinkingTotalDuration)
+        deathAnimTotalTime += Time.deltaTime;
+        if (deathAnimTotalTime >= deathAnimTotalDuration)
         {
             startBlinking = false;
-            spriteBlinkingTotalTimer = 0.0f;
-            this.gameObject.GetComponent<SpriteRenderer>().enabled = true;   // according to 
-                                                                             //your sprite
+            deathAnimTotalTime = 0.0f;
+            playerMaterial.color = new Color(.7f, .8f, .8f);
             return;
         }
 
-        spriteBlinkingTimer += Time.deltaTime;
-        if (spriteBlinkingTimer >= spriteBlinkingMiniDuration)
+        deathAnimTimer += Time.deltaTime;
+        if (deathAnimTimer >= deathAnimDuration)
         {
-            spriteBlinkingTimer = 0.0f;
-            if (this.gameObject.GetComponent<SpriteRenderer>().enabled == true)
+            deathAnimTimer = 0.0f;
+            if (playerMaterial.color == new Color(.7f, .8f, .8f))
             {
-                this.gameObject.GetComponent<SpriteRenderer>().enabled = false;  //make changes
+                playerMaterial.color = new Color(.0f, .0f, .0f, 0.0f);
             }
             else
             {
-                this.gameObject.GetComponent<SpriteRenderer>().enabled = true;   //make changes
+                playerMaterial.color = new Color(.7f, .8f, .8f);
             }
         }
     }
