@@ -27,6 +27,12 @@ public class PlayerController : MonoBehaviour
     private bool checkpointTwoReached;
     public float moveSpeed = 5.0f;
 
+    public float spriteBlinkingTimer = 0.0f;
+    public float spriteBlinkingMiniDuration = 0.1f;
+    public float spriteBlinkingTotalTimer = 0.0f;
+    public float spriteBlinkingTotalDuration = 1.0f;
+    public bool startBlinking = false;
+
     public GameObject RightRunningShoe;
     public GameObject LeftRunningShoe;
     public Material playerMaterial;
@@ -156,6 +162,11 @@ public class PlayerController : MonoBehaviour
                 isInvincible = false;
                 playerMaterial.color = new Color(.7f, .8f, .8f);
             }
+        }
+
+        if (startBlinking == true)
+        {
+            StartBlinkingEffect();
         }
     }
 
@@ -365,7 +376,7 @@ public class PlayerController : MonoBehaviour
     void LoseLife()
     {
         Lives--;
-
+        startBlinking = true;
         if (Lives == 3)
         {
             UIHeartOne.SetActive(true);
@@ -490,4 +501,31 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.06f);
         Time.timeScale = 0;
     }
-}
+
+    private void StartBlinkingEffect()
+    {
+        spriteBlinkingTotalTimer += Time.deltaTime;
+        if (spriteBlinkingTotalTimer >= spriteBlinkingTotalDuration)
+        {
+            startBlinking = false;
+            spriteBlinkingTotalTimer = 0.0f;
+            this.gameObject.GetComponent<SpriteRenderer>().enabled = true;   // according to 
+                                                                             //your sprite
+            return;
+        }
+
+        spriteBlinkingTimer += Time.deltaTime;
+        if (spriteBlinkingTimer >= spriteBlinkingMiniDuration)
+        {
+            spriteBlinkingTimer = 0.0f;
+            if (this.gameObject.GetComponent<SpriteRenderer>().enabled == true)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().enabled = false;  //make changes
+            }
+            else
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().enabled = true;   //make changes
+            }
+        }
+    }
+    }
